@@ -1,0 +1,1 @@
+./devtest_checkpoint/checkpoint_best.pt : 0.45393475895211627 
