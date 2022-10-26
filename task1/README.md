@@ -3,3 +3,15 @@
 The Third Situated Interactive MultiModal Conversations (SIMMC 2.1) Challenge 2022
 
 Task 1 Ambiguous Candidate Identification
+
+## **Model Parameter**
+
+| Sub-Task #1 | Ambiguous Candidate Identification (New) |
+|---------|---------------------------------------------------------------------------------------------------------------------------------------|
+| Goal | Given ambiguous object mentions, to resolve referent objects to thier canonical ID(s). |
+| Input | Current user utterance, Dialog context, Multimodal context |
+| Output |  Canonical object IDs |
+| Metrics | Object Identification F1 / Precision / Recall |
+| Performance (devtest) | xxx |
+| Result File | [Result File Link](result) |
+| Checkpoint | [Checkpoint Link](save_model) |

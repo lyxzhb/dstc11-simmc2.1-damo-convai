@@ -4,3 +4,14 @@ The Third Situated Interactive MultiModal Conversations (SIMMC 2.1) Challenge 20
 
 Task 3 Multimodal Dialog State Tracking (MM-DST)
 
+## **Model Parameter**
+
+| Sub-Task #3 | Multimodal Dialog State Tracking (MM-DST) |
+|---------|---------------------------------------------------------------------------------------------------------------------------------------|
+| Goal | To track user belief states across multiple turns |
+| Input | Current user utterance, Dialogue context, Multimodal context |
+| Output | Belief state for current user utterance |
+| Metrics | Slot F1, Intent F1 |
+| Performance (devtest) | xxx |
+| Result File | [Result File Link](result/) |
+| Checkpoint | [Checkpoint Link](save_model) |

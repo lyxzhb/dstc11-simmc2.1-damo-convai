@@ -2,9 +2,15 @@
 
 ## **Overview**
 
+DSTC11-Track 1 : The Third Situated Interactive MultiModal Conversations (SIMMC 2.1) Challenge 2022
+
+Team: damo-convai
+
 ## **Environment**
 
 ## **Result**
+
+For the results of each task, we put the prediction results of the test-std set in the corresponding folder, for example [task1/result](task1/result/)
 
 ## **Training**
 
@@ -20,7 +26,9 @@ Since our model is trained separately for each task, Download the model paramete
 | Input | Current user utterance, Dialog context, Multimodal context |
 | Output |  Canonical object IDs |
 | Metrics | Object Identification F1 / Precision / Recall |
-| Checkpoint | [Link](task1) |
+| Performance (devtest) | xxx |
+| Result File | [Result File Link](task1/result/) |
+| Checkpoint | [Checkpoint Link](task1) |
 
 | Sub-Task #2 | Multimodal Coreference Resolution |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -28,7 +36,9 @@ Since our model is trained separately for each task, Download the model paramete
 | Input | Current user utterance, Dialog context, Multimodal context |
 | Output |  Canonical object IDs |
 | Metrics |  Coref F1 / Precision / Recall |
-| Checkpoint | [Link](task2) |
+| Performance (devtest) | xxx |
+| Result File | [Result File Link](task2/result/) |
+| Checkpoint | [Checkpoint Link](task2) |
 
 | Sub-Task #3 | Multimodal Dialog State Tracking (MM-DST) |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -36,7 +46,9 @@ Since our model is trained separately for each task, Download the model paramete
 | Input | Current user utterance, Dialogue context, Multimodal context |
 | Output | Belief state for current user utterance |
 | Metrics | Slot F1, Intent F1 |
-| Checkpoint | [Link](task3) |
+| Performance (devtest) | xxx |
+| Result File | [Result File Link](task3/result/) |
+| Checkpoint | [Checkpoint Link](task3) |
 
 | Sub-Task #4 | Multimodal Dialog Response Generation  |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -44,7 +56,31 @@ Since our model is trained separately for each task, Download the model paramete
 | Input | Current user utterance, Dialog context, Multimodal context, (Ground-truth API Calls) |
 | Output | Assistant response utterance |
 | Metrics | BLEU-4 |
-| Checkpoint | [Link](task4) |
+| Performance (devtest) | xxx |
+| Result File | [Result File Link](task4/result/) |
+| Checkpoint | [Checkpoint Link](task4) |
 
 
 ## **References**
+
+```
+@inproceedings{kottur-etal-2021-simmc,
+    title = "{SIMMC} 2.0: A Task-oriented Dialog Dataset for Immersive Multimodal Conversations",
+    author = "Kottur, Satwik  and
+      Moon, Seungwhan  and
+      Geramifard, Alborz  and
+      Damavandi, Babak",
+    booktitle = "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2021",
+    address = "Online and Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.emnlp-main.401",
+    doi = "10.18653/v1/2021.emnlp-main.401",
+    pages = "4903--4912",
+}
+```
+
+## **License**
+
+Our repository is released under MIT License, see [LICENSE](LICENSE) for details.
