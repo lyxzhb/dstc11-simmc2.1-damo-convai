@@ -13,5 +13,4 @@ Task 2 Multimodal Coreference Resolution
 | Output |  Canonical object IDs |
 | Metrics |  Coref F1 / Precision / Recall |
 | Performance (devtest) | xxx |
-| Result File | [Result File Link](result/) |
 | Checkpoint | [Checkpoint Link](save_model) |

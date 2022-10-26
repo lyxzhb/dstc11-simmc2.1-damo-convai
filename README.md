@@ -27,7 +27,6 @@ Since our model is trained separately for each task, Download the model paramete
 | Output |  Canonical object IDs |
 | Metrics | Object Identification F1 / Precision / Recall |
 | Performance (devtest) | xxx |
-| Result File | [Result File Link](task1/result/) |
 | Checkpoint | [Checkpoint Link](task1) |
 
 | Sub-Task #2 | Multimodal Coreference Resolution |
@@ -37,7 +36,6 @@ Since our model is trained separately for each task, Download the model paramete
 | Output |  Canonical object IDs |
 | Metrics |  Coref F1 / Precision / Recall |
 | Performance (devtest) | xxx |
-| Result File | [Result File Link](task2/result/) |
 | Checkpoint | [Checkpoint Link](task2) |
 
 | Sub-Task #3 | Multimodal Dialog State Tracking (MM-DST) |
@@ -47,7 +45,6 @@ Since our model is trained separately for each task, Download the model paramete
 | Output | Belief state for current user utterance |
 | Metrics | Slot F1, Intent F1 |
 | Performance (devtest) | xxx |
-| Result File | [Result File Link](task3/result/) |
 | Checkpoint | [Checkpoint Link](task3) |
 
 | Sub-Task #4 | Multimodal Dialog Response Generation  |
@@ -57,7 +54,6 @@ Since our model is trained separately for each task, Download the model paramete
 | Output | Assistant response utterance |
 | Metrics | BLEU-4 |
 | Performance (devtest) | xxx |
-| Result File | [Result File Link](task4/result/) |
 | Checkpoint | [Checkpoint Link](task4) |
 
 

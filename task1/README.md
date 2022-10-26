@@ -13,5 +13,4 @@ Task 1 Ambiguous Candidate Identification
 | Output |  Canonical object IDs |
 | Metrics | Object Identification F1 / Precision / Recall |
 | Performance (devtest) | xxx |
-| Result File | [Result File Link](result) |
 | Checkpoint | [Checkpoint Link](save_model) |
