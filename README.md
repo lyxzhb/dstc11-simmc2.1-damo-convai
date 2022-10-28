@@ -10,7 +10,7 @@ Team: damo-convai
 
 ## **Result**
 
-For the results of each task, we put the prediction results of the test-std set in the corresponding folder, for example *task1/result*
+For the results of each task, we put the prediction results of the test-std set in the corresponding folder
 
 ## **Training**
 
