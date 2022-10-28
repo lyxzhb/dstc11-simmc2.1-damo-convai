@@ -12,5 +12,5 @@ Task 2 Multimodal Coreference Resolution
 | Input | Current user utterance, Dialog context, Multimodal context |
 | Output |  Canonical object IDs |
 | Metrics |  Coref F1 / Precision / Recall |
-| Performance (devtest) | xxx |
+| Performance (devtest) | 94.40 |
 | Checkpoint | [Checkpoint Link](save_model) |

@@ -29,7 +29,7 @@ from torch import distributed as dist
 from utils.metadata import load_metadata,available_sizes2st
 from utils.set_config import set_device, set_seed_ddp
 
-from model.backbone import VLBertModel
+from model.backbone import VLBertModelWithDisam
 from utils.dataset import get_task1_dataset, DataLoaderX
 
 
@@ -40,9 +40,7 @@ def train(args, model, tokenizer, all_objects_meta):
         enc_attention_mask = list(map(lambda x: x[1], examples))
         boxes = list(map(lambda x: x[2], examples))
         misc = list(map(lambda x: x[3], examples))
-        nocoref = list(map(lambda x: x[4], examples))
-        disambiguation_labels = list(map(lambda x: x[5], examples))
-        
+
         if tokenizer._pad_token is None:
             enc_input_pad = pad_sequence(enc_input, batch_first=True)
         else:
@@ -54,18 +52,7 @@ def train(args, model, tokenizer, all_objects_meta):
                 enc_attention_pad, \
                 boxes, \
                 misc, \
-                nocoref, \
-                torch.vstack(disambiguation_labels), \
-
-
-    train_dataset = get_task1_dataset(args, tokenizer, all_objects_meta, eval=False, pretrain=True)
     
-    train_sampler = DistributedSampler(train_dataset)
-    
-    train_dataloader = DataLoaderX(train_dataset, num_workers=args.num_workers, sampler=train_sampler, batch_size=args.train_batch_size, collate_fn=collate_bart, pin_memory=True)
-    
-    t_total = len(train_dataloader) * args.num_train_epochs
-
     no_decay = ["bias", "LayerNorm.weight"]
     optimizer_grouped_parameters = [
         {
@@ -77,13 +64,17 @@ def train(args, model, tokenizer, all_objects_meta):
             "weight_decay": 0.0,
         }
     ]
-
+    
+    # 训练的相关配置文件
+    train_phrase_dataset = get_task1_dataset(args, tokenizer, all_objects_meta, eval=False, pretrain=False)
+    train_phrase_sampler = DistributedSampler(train_phrase_dataset)
+    train_phrase_dataloader = DataLoaderX(train_phrase_dataset, num_workers=args.num_workers, sampler=train_phrase_sampler, batch_size=args.train_batch_size, collate_fn=collate_bart, pin_memory=True)
+    t_total = len(train_phrase_dataloader) * args.num_train_epochs
     optimizer = AdamW(
         optimizer_grouped_parameters,
         lr=args.learning_rate,
         eps=args.adam_epsilon
     )
-
     scheduler = get_linear_schedule_with_warmup(
         optimizer,
         num_warmup_steps=args.warmup_rate * t_total,
@@ -106,9 +97,9 @@ def train(args, model, tokenizer, all_objects_meta):
 
     for epoch_idx in range(args.num_train_epochs):
 
-        train_sampler.set_epoch(epoch_idx)
-        epoch_iterator = tqdm(train_dataloader, desc=f"Iteration-{epoch_idx}", disable=args.local_rank not in [-1, 0], colour='green', leave=False)    
-            
+        train_phrase_sampler.set_epoch(epoch_idx)
+        epoch_iterator = tqdm(train_phrase_dataloader, desc=f"Iteration-{epoch_idx} ", disable=args.local_rank not in [-1, 0], colour='green', leave=False)    
+    
         model.train()
         
         for batch_idx, batch in enumerate(epoch_iterator):
@@ -118,10 +109,8 @@ def train(args, model, tokenizer, all_objects_meta):
             enc_attention_mask = batch[1].to(args.device)
             boxes = batch[2]  # batch, num_obj_per_line, 6
             misc = batch[3]  # batch, num_obj_per_line, dict  # 这个misc是什么信息
-            nocoref = batch[4]
-            disambiguation_labels = batch[5].to(args.device)
-
-            step_loss = model(enc_input, enc_attention_mask, boxes, misc, nocoref, disambiguation_labels)
+            
+            step_loss = model(enc_input, enc_attention_mask, boxes, misc)
                 
             global_step += 1
 
@@ -136,17 +125,13 @@ def train(args, model, tokenizer, all_objects_meta):
             optimizer.step()
             scheduler.step()
             model.zero_grad()
-
-            # if global_step % args.embedding_train_steps == 0:  # 如果全局步骤在embedding_train_step取余为0时在训练一次embedding
-            #     train_embedding_clip_way(args, model, tokenizer, all_objects_meta, args.embedding_train_epochs_ongoing, do_tsne=False)
-
-        # if args.local_rank in [-1, 0]:
+            
         if epoch_idx >= 3 and args.local_rank in [-1, 0] and epoch_idx % 2 == 1:
             # Evaluation
             model.eval()
             total_report = evaluate(args, model, tokenizer, all_objects_meta)
             total_report['epoch_idx'] = epoch_idx
-            print('EVALUATION:', total_report['f1-score'])
+            print('EVALUATION:', total_report)
 
             if total_report['f1-score'] > best_f1_score:
                 # Save checkpoint
@@ -160,7 +145,6 @@ def train(args, model, tokenizer, all_objects_meta):
                 
                 with open(join(output_dir, 'report.json'), 'w') as f_out:
                     json.dump(total_report, f_out, indent=4, ensure_ascii=False)
-                    
                 best_f1_score = total_report['f1-score']
 
                 if len(save_checkpoints) > args.save_checkpoints:
@@ -182,9 +166,7 @@ def evaluate(args, model, tokenizer, all_objects_meta):
         enc_attention_mask = list(map(lambda x: x[1], examples))
         boxes = list(map(lambda x: x[2], examples))
         misc = list(map(lambda x: x[3], examples))
-        disambiguation_labels = list(map(lambda x: x[5], examples))
-        disam_active_scene = list(map(lambda x: x[8], examples))
-        
+
         if tokenizer._pad_token is None:
             enc_input_pad = pad_sequence(enc_input, batch_first=True)
         else:
@@ -192,13 +174,7 @@ def evaluate(args, model, tokenizer, all_objects_meta):
 
         enc_attention_pad = pad_sequence(enc_attention_mask, batch_first=True, padding_value=0)
 
-        return  enc_input_pad, \
-                enc_attention_pad, \
-                boxes, \
-                misc, \
-                torch.vstack(disambiguation_labels).squeeze(), \
-                disam_active_scene
-                        
+        return enc_input_pad, enc_attention_pad, boxes, misc
 
     def rec_prec_f1(n_correct, n_true, n_pred):
         rec = n_correct / n_true if n_true != 0 else 0
@@ -206,40 +182,30 @@ def evaluate(args, model, tokenizer, all_objects_meta):
         f1 = 2 * prec * rec / (prec + rec) if (prec + rec) != 0 else 0
         return rec, prec, f1
 
-    eval_dataset = get_task1_dataset(args, tokenizer, all_objects_meta, eval=True, pretrain=True)
+    eval_dataset = get_task1_dataset(args, tokenizer, all_objects_meta, eval=True, pretrain=False)
     eval_sampler = SequentialSampler(eval_dataset)
     eval_dataloader = DataLoaderX(eval_dataset, sampler=eval_sampler, num_workers=args.num_workers, batch_size=args.eval_batch_size, collate_fn=collate_eval_bart, pin_memory=True)
 
     n_pred_objects, n_true_objects, n_correct_objects = 0, 0, 0
-    n_total_disambiguation, n_true_disambiguation = 0, 0
 
-    output_disam_list = []
-    
     for batch in tqdm(eval_dataloader, desc="Evaluating", colour='blue', leave=False):
         enc_input = batch[0].to(args.device)
         enc_attention_mask = batch[1].to(args.device)
         boxes = batch[2]  # batch, num_obj_per_line, 6
         misc = batch[3]  # batch, num_obj_per_line, dict
-        disambiguation_labels = batch[4].to(args.device)
-        active_scene = batch[5]
-        
+
         with torch.no_grad():
-            s_pred_objects, s_true_objects, s_correct_objects, disambiguation_true_items, disambiguation_total_items, output_step_disam_list = model.module.evaluate(enc_input, enc_attention_mask, boxes, misc, disambiguation_labels, active_scene)
+            s_pred_objects, s_true_objects, s_correct_objects, _ = model.module.evaluate(enc_input, enc_attention_mask, boxes, misc)
             n_pred_objects += s_pred_objects
             n_true_objects += s_true_objects
             n_correct_objects += s_correct_objects
-            n_true_disambiguation += disambiguation_true_items
-            n_total_disambiguation += disambiguation_total_items
-            output_disam_list.extend(output_step_disam_list)
-            
+    
     coref_rec, coref_prec, coref_f1 = rec_prec_f1(n_correct_objects, n_true_objects, n_pred_objects)
     
     return {
         'precision': coref_prec,
         'recall': coref_rec,
         'f1-score': coref_f1,
-        'disambiguation_acc': n_true_disambiguation/n_total_disambiguation,
-        'disambiguation_output': output_disam_list
     }
 
 
@@ -372,6 +338,7 @@ def main():
     set_device(args)
 
     tokenizer = LongformerTokenizerFast.from_pretrained(args.backbone)
+    
     if args.add_special_tokens:
         if not os.path.exists(args.add_special_tokens):
             raise ValueError("Additional special tokens file {args.add_special_tokens} not found}")
@@ -381,7 +348,7 @@ def main():
         args.len_tokenizer = len(tokenizer)
     
     # Define Model
-    model = VLBertModel(args)
+    model = VLBertModelWithDisam(args)
     model.to(args.device)
 
     # meta的信息转化为token id：<@1000>起/<@2000>起

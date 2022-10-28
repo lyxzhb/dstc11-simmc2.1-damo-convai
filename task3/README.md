@@ -12,5 +12,5 @@ Task 3 Multimodal Dialog State Tracking (MM-DST)
 | Input | Current user utterance, Dialogue context, Multimodal context |
 | Output | Belief state for current user utterance |
 | Metrics | Slot F1, Intent F1 |
-| Performance (devtest) | xxx |
+| Performance (devtest) | 94.37/99.19 |
 | Checkpoint | [Checkpoint Link](save_model) |

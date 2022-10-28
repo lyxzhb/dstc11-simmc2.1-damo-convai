@@ -12,5 +12,5 @@ Task 1 Ambiguous Candidate Identification
 | Input | Current user utterance, Dialog context, Multimodal context |
 | Output |  Canonical object IDs |
 | Metrics | Object Identification F1 / Precision / Recall |
-| Performance (devtest) | xxx |
+| Performance (devtest) | 70.31 |
 | Checkpoint | [Checkpoint Link](save_model) |

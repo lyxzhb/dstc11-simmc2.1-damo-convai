@@ -10,7 +10,7 @@ Team: damo-convai
 
 ## **Result**
 
-For the results of each task, we put the prediction results of the test-std set in the corresponding folder, for example [task1/result](task1/result/)
+For the results of each task, we put the prediction results of the test-std set in the corresponding folder, for example *task1/result*
 
 ## **Training**
 
@@ -25,8 +25,8 @@ Since our model is trained separately for each task, Download the model paramete
 | Goal | Given ambiguous object mentions, to resolve referent objects to thier canonical ID(s). |
 | Input | Current user utterance, Dialog context, Multimodal context |
 | Output |  Canonical object IDs |
-| Metrics | Object Identification F1 / Precision / Recall |
-| Performance (devtest) | xxx |
+| Metrics | Object Identification F1 |
+| Performance (devtest) | 70.31 |
 | Checkpoint | [Checkpoint Link](task1) |
 
 | Sub-Task #2 | Multimodal Coreference Resolution |
@@ -34,8 +34,8 @@ Since our model is trained separately for each task, Download the model paramete
 | Goal | To resolve referent objects to thier canonical ID(s) as defined by the catalog. |
 | Input | Current user utterance, Dialog context, Multimodal context |
 | Output |  Canonical object IDs |
-| Metrics |  Coref F1 / Precision / Recall |
-| Performance (devtest) | xxx |
+| Metrics |  Coref F1 |
+| Performance (devtest) | 94.40 |
 | Checkpoint | [Checkpoint Link](task2) |
 
 | Sub-Task #3 | Multimodal Dialog State Tracking (MM-DST) |
@@ -44,7 +44,7 @@ Since our model is trained separately for each task, Download the model paramete
 | Input | Current user utterance, Dialogue context, Multimodal context |
 | Output | Belief state for current user utterance |
 | Metrics | Slot F1, Intent F1 |
-| Performance (devtest) | xxx |
+| Performance (devtest) | 94.37/99.19 |
 | Checkpoint | [Checkpoint Link](task3) |
 
 | Sub-Task #4 | Multimodal Dialog Response Generation  |
@@ -53,7 +53,7 @@ Since our model is trained separately for each task, Download the model paramete
 | Input | Current user utterance, Dialog context, Multimodal context, (Ground-truth API Calls) |
 | Output | Assistant response utterance |
 | Metrics | BLEU-4 |
-| Performance (devtest) | xxx |
+| Performance (devtest) | 45.39 |
 | Checkpoint | [Checkpoint Link](task4) |
 
 

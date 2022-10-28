@@ -16,11 +16,6 @@ MULTIMODAL_END = '<EOM>'
 
 NOCOREF_TOKEN = '<NOCOREF>'
 DISAMBIGUATION_TOKEN = '<DISAM>'
-DISAMBIGUATION_ALL_TOKEN = '<DISAM_ALL>'
-DISAMBIGUATION_TYPE_TOKEN = '<DISAM_TYPE>'
-
-FASHION_DST = "<INTENT><FAS_TYPE><FAS_PRICE><FAS_CUSTOMER_REVIEW><FAS_BRAND><FAS_SIZE><FAS_PATTERN><FAS_COLOR><FAS_SLEEVE_LENGTH><FAS_AVAILABLE_SIZE>"
-FURNITURE_DST = "<INTENT><FUR_TYPE><FUR_MATERIALS><FUR_PRICE><FUR_BRAND><FUR_CUSTOMER_RATING><FUR_COLOR>"
 
 
 def arrange_object_special_tokens(scene_dir, image_dir, scene_ids, object_item2id, insert_bbox_coords):
@@ -109,7 +104,6 @@ def arrange_object_special_tokens(scene_dir, image_dir, scene_ids, object_item2i
     return ''.join(arrange_list), arrange_bbox_list
 
 
-
 def process_metadata_dict(scene_dir, scene_ids, all_metadata):
     ''' 根据scene ids 生成对应的 object dict'''
     output = {}
@@ -125,13 +119,13 @@ def process_metadata_dict(scene_dir, scene_ids, all_metadata):
     return output
 
 
-def process_for_vlbert_task3():
+def process_for_vlbert_task1():
     ''' 为VLBert模型的预训练准备'''
-    scene_dir = '../data_dstc11/jsons'
-    image_dir = '../data_dstc11/images'
-    obj_item2id_path = '../data_dstc11/item2id.json'
-    fashion_metadata_path = '../data_dstc11/fashion_prefab_metadata_all.json'
-    furniture_metadata_path = '../data_dstc11/furniture_prefab_metadata_all.json'
+    scene_dir = '../../data_dstc11/jsons'
+    image_dir = '../../data_dstc11/images'
+    obj_item2id_path = '../data/item2id.json'
+    fashion_metadata_path = '../../data_dstc11/fashion_prefab_metadata_all.json'
+    furniture_metadata_path = '../../data_dstc11/furniture_prefab_metadata_all.json'
     
     all_metadata = {}
     with open(fashion_metadata_path) as f_in:
@@ -139,18 +133,16 @@ def process_for_vlbert_task3():
     with open(furniture_metadata_path) as f_in:
         all_metadata.update(json.load(f_in))
         
-        
     with open(obj_item2id_path) as f_in:
         object_item2id = json.load(f_in)
 
     output = []
-    
-    split_list = ['devtest']  # For Evaluation
-    # split_list = ['train', 'dev']  # For Training
+    split_list = ['dev']  # For Evaluation
+    # split_list = ['train']  # For Training
 
     for split in split_list:
         
-        file_path = f'../data_dstc11/simmc2.1_dials_dstc11_{split}.json'
+        file_path = f'../../data_dstc11/simmc2.1_dials_dstc11_{split}.json'
         with open(file_path) as f_in:
             data = json.load(f_in)['dialogue_data']
 
@@ -159,14 +151,11 @@ def process_for_vlbert_task3():
             dialogue_idx = dialogue['dialogue_idx']
             scene_ids = list(sorted(dialogue['scene_ids'].items(), key=lambda item: int(item[0])))
             is_fashion = True if dialogue['domain'] == 'fashion' else False
-
-            obj_metadata_dict = process_metadata_dict(scene_dir, list(dialogue['scene_ids'].values()), all_metadata)
             
             lst_context = []
             sys_lst_context = []
 
             prev_turn = None
-            prev_sys_object_ids = []
             
             for turn in dialogue['dialogue']:
 
@@ -194,225 +183,36 @@ def process_for_vlbert_task3():
                     lst_context.append(f'System : {prev_system_transcript} User : {transcript}')
                     sys_lst_context.append(f'User : {transcript} System : {system_transcript}')
 
-                if is_fashion:
-                    input_str = DISAMBIGUATION_TOKEN + ' ' + ' '.join(lst_context[-2:]) + FASHION_DST + OBJ_BEGIN_TOKEN + NOCOREF_TOKEN + object_str + OBJ_END_TOKEN
-                else:
-                    input_str = DISAMBIGUATION_TOKEN + ' ' + ' '.join(lst_context[-2:]) + FURNITURE_DST + OBJ_BEGIN_TOKEN + NOCOREF_TOKEN + object_str + OBJ_END_TOKEN
-                
-
-                output.append({
-                    'input': input_str,
-                    'disambiguation_label': disambiguation_label,
-                    'is_fashion': is_fashion,
-                    'bbox': bbox_data,
-                    'intent': intent,
-                    'slot_values': slot_values,
-                    'reference_objects': user_object,
-                    'disambiguation_objects': disambiguation_candidates,
-                    'dialogue_idx': dialogue_idx,
-                    'turn_idx': turn_idx,
-                    'role': 'User'
-                })
+                # 部分情况下选择全量数据
+                if disambiguation_label == 1:
+                    
+                    output.append({
+                        'input': ' '.join(lst_context[-2:]) + OBJ_BEGIN_TOKEN + NOCOREF_TOKEN + object_str + OBJ_END_TOKEN,
+                        'disambiguation_label': disambiguation_label,
+                        'is_fashion': is_fashion,
+                        'bbox': bbox_data,
+                        'intent': intent,
+                        'slot_values': slot_values,
+                        'reference_objects': user_object,
+                        'disambiguation_objects': disambiguation_candidates,
+                        'dialogue_idx': dialogue_idx,
+                        'turn_idx': turn_idx,
+                        'role': 'User'
+                    })
 
                 prev_turn = turn
 
     print(len(output))
     
-    # with open('../data_dstc11/task2/simmc2.1_dials_dstc11_task3_predict.json', 'w') as f_out:
+    # with open('../data/simmc2.1_dials_dstc11_task1_predict.json', 'w') as f_out:
     #     json.dump(output, f_out, indent=4, ensure_ascii=False)
 
-    with open('../data_dstc11/task2/simmc2.1_dials_dstc11_task3_eval.json', 'w') as f_out:
+    with open('../data/simmc2.1_dials_dstc11_task1_eval.json', 'w') as f_out:
         json.dump(output, f_out, indent=4, ensure_ascii=False)
-
- 
-def process_for_vlbert_task1():
-    ''' 为VLBert模型的预训练准备'''
-    scene_dir = '../data_dstc11/jsons'
-    image_dir = '../data_dstc11/images'
-    obj_item2id_path = '../data_dstc11/item2id.json'
-    fashion_metadata_path = '../data_dstc11/fashion_prefab_metadata_all.json'
-    furniture_metadata_path = '../data_dstc11/furniture_prefab_metadata_all.json'
-    total_item_types = ['items', 'blouse', 'shirt', 'jacket', 'dress', 'hoodie', 'coat', 'hat', 'jeans', 'trousers', 'sweater', 'tshirt', 'shoes', 'joggers', 'shirt, vest', 'vest', 'suit', 'shelves', 'chair', 'sofa', 'cofeetable', 'endtable', 'bed', 'table', 'rug', 'lamp']
     
-    all_metadata = {}
-    
-    with open(fashion_metadata_path) as f_in:
-        all_metadata.update(json.load(f_in))
-    with open(furniture_metadata_path) as f_in:
-        all_metadata.update(json.load(f_in))
-        
-        
-    with open(obj_item2id_path) as f_in:
-        object_item2id = json.load(f_in)
-
-    output = []
-    
-    # split_list = ['devtest']
-    split_list = ['train', 'dev']
-
-    for split in split_list:
-        
-        file_path = f'../data_dstc11/simmc2.1_dials_dstc11_{split}.json'
-        with open(file_path) as f_in:
-            data = json.load(f_in)['dialogue_data']
-
-        for dialogue in tqdm(data, desc=f'{split} '):
-
-            dialogue_idx = dialogue['dialogue_idx']
-            scene_ids = list(sorted(dialogue['scene_ids'].items(), key=lambda item: int(item[0])))
-            
-            is_fashion = True if dialogue['domain'] == 'fashion' else False
-
-            obj_metadata_dict = process_metadata_dict(scene_dir, list(dialogue['scene_ids'].values()), all_metadata)
-            
-            lst_context = []
-            sys_lst_context = []
-            disam_lst_context = []
-            
-            prev_turn = None
-            prev_sys_object_ids = []
-            
-            for iter_idx, turn in enumerate(dialogue['dialogue']):
-
-                turn_idx = turn['turn_idx']
-                active_scene = None
-                        
-                for scene_item in scene_ids:
-                    if turn_idx >= int(scene_item[0]):
-                        active_scene = scene_item[1]
-                        
-                system_transcript = turn['system_transcript']
-                transcript = turn['transcript']
-                
-                user_object = turn['transcript_annotated']['act_attributes']['objects']
-                sys_object = turn['system_transcript_annotated']['act_attributes']['objects']
-
-                disambiguation_label = turn['transcript_annotated']['disambiguation_label']
-                disambiguation_candidates = turn['transcript_annotated']['disambiguation_candidates']
-                disambiguation_objects_raw = turn['transcript_annotated']['disambiguation_candidates_raw']
-                
-                
-                slot_values = turn['transcript_annotated']['act_attributes']['slot_values']
-                intent = turn['transcript_annotated']['act']
-                
-                turn_scene_ids = [item[1] for item in scene_ids if int(item[0]) <= turn_idx]
-
-                object_str, bbox_data = arrange_object_special_tokens(scene_dir, image_dir, turn_scene_ids, object_item2id, True)
-
-                if prev_turn is None:
-                    lst_context.append(f'User : {transcript}')
-                    disam_lst_context.append(f'User : {transcript}')
-                    sys_lst_context.append(f'User : {transcript} System : {system_transcript}')
-                else:
-                    prev_system_transcript = prev_turn['system_transcript']
-                    lst_context.append(f'System : {prev_system_transcript} User : {transcript}')
-                    sys_lst_context.append(f'User : {transcript} System : {system_transcript}')
-
-                    disambiguation_transcript = turn.get('disambiguation_transcript', '')
-                    if disambiguation_transcript == '':
-                        disambiguation_transcript = transcript
-                        
-                    disam_lst_context.append(f'System : {prev_system_transcript} User : {disambiguation_transcript}')
-                    
-                
-                # For Evaluation
-                
-                # if disambiguation_label == 1:
-                    
-                #     if iter_idx == len(dialogue['dialogue']) - 1:
-                #         next_turn_transcript = f' ( User: ) '
-                #     else:
-                #         transcript_text = dialogue['dialogue'][iter_idx+1]['transcript']
-                #         next_turn_transcript = f' ( User: {transcript_text} )'
-                    
-                #     output.append({
-                #         # 'input': DISAMBIGUATION_TOKEN + DISAMBIGUATION_ALL_TOKEN + DISAMBIGUATION_TYPE_TOKEN + ' ' + ' '.join(lst_context[-2:]) + OBJ_BEGIN_TOKEN + NOCOREF_TOKEN + object_str + OBJ_END_TOKEN,
-                #         'input': ' '.join(lst_context[-2:])  + next_turn_transcript + OBJ_BEGIN_TOKEN + object_str + OBJ_END_TOKEN,
-                #         'disambiguation_label': disambiguation_label,
-                #         'is_fashion': is_fashion,
-                #         'bbox': bbox_data,
-                #         'intent': intent,
-                #         'slot_values': slot_values,
-                #         'active_scene': active_scene,
-                #         'reference_objects': user_object,
-                #         'disambiguation_objects': disambiguation_candidates,
-                #         'disambiguation_objects_raw': disambiguation_objects_raw,
-                #         'dialogue_idx': dialogue_idx,
-                #         'turn_idx': turn_idx,
-                #         'role': 'User'
-                #     })
-
-                # For Training
-                min_length = min(len(lst_context), 2)
-                
-                if split != 'devtest':
-                    
-                    if disambiguation_label == 1:
-                        
-                        if iter_idx == len(dialogue['dialogue']) - 1:
-                            next_turn_transcript = f' ( User: ) '
-                        else:
-                            transcript_text = dialogue['dialogue'][iter_idx+1]['transcript']
-                            next_turn_transcript = f' ( User: {transcript_text} )'    
-                            
-                        for idx in range(min_length, 0, -1):
-                            
-                            output.append({
-                                # 'input': DISAMBIGUATION_TOKEN +  DISAMBIGUATION_ALL_TOKEN + DISAMBIGUATION_TYPE_TOKEN +  ' ' + ' '.join(lst_context[-idx:]) + OBJ_BEGIN_TOKEN + NOCOREF_TOKEN + object_str + OBJ_END_TOKEN,
-                                'input': ' '.join(lst_context[-idx:])  + next_turn_transcript + OBJ_BEGIN_TOKEN + object_str + OBJ_END_TOKEN,
-                                'disambiguation_label': disambiguation_label,
-                                'is_fashion': is_fashion,
-                                'bbox': bbox_data,
-                                'active_scene': active_scene,
-                                'intent': intent,
-                                'slot_values': slot_values,
-                                'reference_objects': user_object,
-                                'disambiguation_objects': disambiguation_candidates,
-                                'disambiguation_objects_raw': disambiguation_objects_raw,
-                                'dialogue_idx': dialogue_idx,
-                                'turn_idx': turn_idx,
-                                'role': 'User'
-                            })
-
-                            # output.append({
-                            #     # 'input': DISAMBIGUATION_TOKEN +  DISAMBIGUATION_ALL_TOKEN + DISAMBIGUATION_TYPE_TOKEN +  ' ' + ' '.join(lst_context[-idx:]) + OBJ_BEGIN_TOKEN + NOCOREF_TOKEN + object_str + OBJ_END_TOKEN,
-                            #     'input': ' '.join(disam_lst_context[-idx:])  + OBJ_BEGIN_TOKEN + object_str + OBJ_END_TOKEN,
-                            #     'disambiguation_label': disambiguation_label,
-                            #     'is_fashion': is_fashion,
-                            #     'bbox': bbox_data,
-                            #     'active_scene': active_scene,
-                            #     'intent': intent,
-                            #     'slot_values': slot_values,
-                            #     'reference_objects': user_object,
-                            #     'disambiguation_objects': disambiguation_candidates,
-                            #     'disambiguation_objects_raw': disambiguation_objects_raw,
-                            #     'dialogue_idx': dialogue_idx,
-                            #     'turn_idx': turn_idx,
-                            #     'role': 'User'
-                            # })
-                            
-                        # for idx in range(min_length, 0, -1):
-                        #     output.append({
-                        #         'input': ' '.join(sys_lst_context[-idx:])  + OBJ_BEGIN_TOKEN + object_str + OBJ_END_TOKEN,
-                        #         'disambiguation_label': -100,
-                        #         'is_fashion': is_fashion,
-                        #         'bbox': bbox_data,
-                        #         'reference_objects': sys_object,
-                        #         'disambiguation_objects': disambiguation_candidates, # System 不存在 disambiguation candidate
-                        #         'dialogue_idx': dialogue_idx,
-                        #         'turn_idx': turn_idx,
-                        #         'role': 'System'
-                        #     })
-
-                prev_turn = turn
-
-    print(len(output))
-    
-    with open('../data_dstc11/task1/simmc2.1_dials_dstc11_task1_phrase2_predict.json', 'w') as f_out:
-        json.dump(output, f_out, indent=4, ensure_ascii=False)
-
-    # with open('../data_dstc11/task1/simmc2.1_dials_dstc11_task1_phrase2_eval.json', 'w') as f_out:
+    # with open('../data/simmc2.1_dials_dstc11_task1_eval_total.json', 'w') as f_out:
     #     json.dump(output, f_out, indent=4, ensure_ascii=False)
+
     
 
 def main():

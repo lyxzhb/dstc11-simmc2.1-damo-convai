@@ -138,9 +138,6 @@ def train(args, model, tokenizer, all_objects_meta, fashion_slot_map, furniture_
             scheduler.step()
             model.zero_grad()
 
-            # if global_step % args.embedding_train_steps == 0:  # 如果全局步骤在embedding_train_step取余为0时在训练一次embedding
-            #     train_embedding_clip_way(args, model, tokenizer, all_objects_meta, args.embedding_train_epochs_ongoing, do_tsne=False)
-
         if epoch_idx >= 3 and args.local_rank in [-1, 0] and (epoch_idx % 2 == 1 or epoch_idx == args.num_train_epochs - 1):
         # if args.local_rank in [-1, 0]:
             # Evaluation
