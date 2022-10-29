@@ -74,7 +74,7 @@ cd task3/bash
 bash run_dstc11_task3.sh
 ```
 
-**NOTE**: For task 1, 2 and 3, the preprocessing program need to be executed in advance `taskN/scripts/process_for_dstc11_taskN.py`, and the preprocessed dataset can be found under `taskN/data` directory.
+**NOTE**: For task 1, 2 and 3, the preprocessing program need to be executed in advance `taskN/scripts/process_for_dstc11_taskN.py`, and the preprocessed dataset can be found under `taskN/data` directory. For downloaded checkpoints, they should be put into 'taskN/save_model' directory.
 All script will print the result (Precision/Recall/F1-score) and create a line-by-line *.json prediction for each turn of the preprocessed dataset.
 
 ### **(Subtask 4) Multimodal Dialog Response Generation**
@@ -83,7 +83,7 @@ cd task4/run_scripts/simmc2.1
 bash evaluate_one.sh task4_para 0 1
 ```
 
-**NOTE**: For task 4, the preprocessing program need to be executed in advance `task4/dataset/gen_simmc2.1_teststd.py`, and the preprocessed tsv format dataset can be found under `task4/dataset/simmc2.1` directory.
+**NOTE**: For task 4, the preprocessing program need to be executed in advance `task4/dataset/gen_simmc2.1_teststd.py`, and the preprocessed tsv format dataset can be found under `task4/dataset/simmc2.1` directory. For downloaded checkpoint, it should be put into 'task4/run_scripts/simmc2.1/task4_para/task4_para.pt'.
 
 ## **Model Parameter**
 
