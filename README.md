@@ -18,30 +18,9 @@ For the results of each task, we put the prediction results of the test-std set 
 Install the conda virtual environment by:
 ```shell
 conda env create -f simmc.yml
+cd task4
+pip install -r requirements.txt
 ```
-
-## **Dataset**
-
-Download the dataset from repository via git-lfs and rearrange the data folder `data_dstc11` in the following format.
-
-```
-|-- data_dstc11
-|-- |-- images                                                # scene images
-|-- |   |-- cloth_store_1_1_1.png
-|-- |   |-- cloth_store_1_1_2.png
-|-- |   `-- ...
-|-- |-- jsons                                                 # bbox and scene jsons
-|-- |   |-- cloth_store_1_1_1_bbox.json
-|-- |   |-- cloth_store_1_1_1_scene.json
-|-- |   `-- ...
-|-- |-- fashion_prefab_metadata_all.json                      # metadata (fashion)
-|-- |-- furniture_prefab_metadata_all.json                    # metadata (furniture)
-|-- |-- simmc2.1_dials_dstc11_dev.json                          # dialogue data (dev)
-|-- |-- simmc2.1_dials_dstc11_devtest.json                      # dialogue data (devtest)
-|-- |-- simmc2.1_dials_dstc11_train.json                        # dialogue data (train)
-|-- |-- simmc2.1_dials_dstc11_teststd_public.json                        # dialogue data (teststd_public)
-```
-
 
 ## **Evaluation**
 
@@ -65,8 +44,16 @@ cd task3/bash
 bash run_dstc11_task3.sh
 ```
 
-**NOTE**: For task 1,2,3, the preprocessing program need to be executed in advance `taskN/scripts/process_for_dstc11_taskN.py`, and the preprocessed dataset can be found under `taskN/data` directory.
+**NOTE**: For task 1, 2 and 3, the preprocessing program need to be executed in advance `taskN/scripts/process_for_dstc11_taskN.py`, and the preprocessed dataset can be found under `taskN/data` directory.
 All script will print the result (Precision/Recall/F1-score) and create a line-by-line *.json prediction for each turn of the preprocessed dataset.
+
+### **(Subtask 4) Multimodal Dialog Response Generation**
+```shell
+cd task4/run_scripts/simmc2.1
+bash evaluate_one.sh task4_para 0 1
+```
+
+**NOTE**: For task 4, the preprocessing program need to be executed in advance `task4/dataset/gen_simmc2.1_teststd.py`, and the preprocessed tsv format dataset can be found under `task4/dataset/simmc2.1` directory.
 
 ## **Model Parameter**
 
