@@ -83,7 +83,7 @@ cd task4/run_scripts/simmc2.1
 bash evaluate_one.sh task4_para 0 1
 ```
 
-**NOTE**: For task 4, the preprocessing program need to be executed in advance `task4/dataset/gen_simmc2.1_teststd.py`, and the preprocessed tsv format dataset can be found under `task4/dataset/simmc2.1` directory. For downloaded checkpoint, it should be put into 'task4/run_scripts/simmc2.1/task4_para/task4_para.pt'.
+**NOTE**: For task 4, the preprocessing program need to be executed in advance `task4/dataset/gen_simmc2.1.py`, and the preprocessed tsv format dataset can be found under `task4/dataset/simmc2.1` directory. For downloaded checkpoint, it should be put into 'task4/run_scripts/simmc2.1/task4_para/task4_para.pt'.
 
 ## **Model Parameter**
 
