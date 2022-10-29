@@ -4,7 +4,7 @@ bpe_dir=../../utils/BPE
 user_dir=../../ofa_module
 
 para_result=./$1
-para=${para_result}/checkpoint_best.pt
+para=${para_result}/task4_para.pt
 
 data=../../dataset/simmc2.1/simmc2.1_teststd.tsv
 selected_cols=0,1,2,3
