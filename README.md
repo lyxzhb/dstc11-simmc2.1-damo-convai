@@ -38,7 +38,7 @@ cd task3/bash
 bash run_dstc11_task3.sh
 ```
 
-**NOTE**: For task 1,2,3, the preprocessing program need to be executed in advance `taskX/scripts/process_for_dstc11_taskX.py`, and the preprocessed dataset can be found under `task1/data` directory.
+**NOTE**: For task 1,2,3, the preprocessing program need to be executed in advance `taskN/scripts/process_for_dstc11_taskN.py`, and the preprocessed dataset can be found under `taskN/data` directory.
 All script will print the result (Precision/Recall/F1-score) and create a line-by-line *.json prediction for each turn of the preprocessed dataset.
 
 ## **Model Parameter**
