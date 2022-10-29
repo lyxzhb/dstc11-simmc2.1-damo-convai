@@ -6,6 +6,10 @@ DSTC11-Track 1 : The Third Situated Interactive MultiModal Conversations (SIMMC 
 
 Team: damo-convai
 
+For task 1, 2 and 3, we design discriminative models based on transformer-encoder structure (Longformer). To predict ambiguous candidates, coreference resolution, and belief state, we encode dialogue history and attach task-specific heads to the output of encoder. Additionally, we line up the item vectors (bbox position embedding) with their respective attribute tokens in the inputted token embedding. Auxiliary heads for predicting attributes are added as additional supervision signals.
+
+For task 4, we propose a generative multimodal model which takes dialogue history and non-visual attributes as textual input, takes corresponding scene images as visual input and generates system response autoregressively.
+
 ## **Result**
 
 For the results of each task, we put the prediction results of the test-std set in the corresponding folder
