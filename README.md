@@ -74,7 +74,7 @@ cd task3/bash
 bash run_dstc11_task3.sh
 ```
 
-**NOTE**: For task 1, 2 and 3, the preprocessing program need to be executed in advance `taskN/scripts/process_for_dstc11_taskN.py`, and the preprocessed dataset can be found under `taskN/data` directory.
+**NOTE**: For task 1, 2 and 3, the preprocessing program need to be executed in advance `taskN/scripts/process_for_dstc11_taskN.py`, and the preprocessed dataset can be found under `taskN/data` directory. For downloaded checkpoints, they should be put into 'taskN/save_model' directory.
 All script will print the result (Precision/Recall/F1-score) and create a line-by-line *.json prediction for each turn of the preprocessed dataset.
 
 ### **(Subtask 4) Multimodal Dialog Response Generation**
@@ -83,7 +83,7 @@ cd task4/run_scripts/simmc2.1
 bash evaluate_one.sh task4_para 0 1
 ```
 
-**NOTE**: For task 4, the preprocessing program need to be executed in advance `task4/dataset/gen_simmc2.1_teststd.py`, and the preprocessed tsv format dataset can be found under `task4/dataset/simmc2.1` directory.
+**NOTE**: For task 4, the preprocessing program need to be executed in advance `task4/dataset/gen_simmc2.1_teststd.py`, and the preprocessed tsv format dataset can be found under `task4/dataset/simmc2.1` directory. For downloaded checkpoint, it should be put into 'task4/run_scripts/simmc2.1/task4_para/task4_para.pt'.
 
 ## **Model Parameter**
 
@@ -96,7 +96,7 @@ Since our model is trained separately for each task, Download the model paramete
 | Output |  Canonical object IDs |
 | Metrics | Object Identification F1 |
 | Performance (devtest) | 70.31 |
-| Checkpoint | [Checkpoint Link](task1) |
+| Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/1yPlkHdGnJMwXfL0NLBc6ImaRCT_sxbrB/view?usp=share_link) |
 
 | Sub-Task #2 | Multimodal Coreference Resolution |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -105,7 +105,7 @@ Since our model is trained separately for each task, Download the model paramete
 | Output |  Canonical object IDs |
 | Metrics |  Coref F1 |
 | Performance (devtest) | 94.40 |
-| Checkpoint | [Checkpoint Link](task2) |
+| Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/1Ji-JOYz2N5VQDjzT8jBi437xJo0pro_Y/view?usp=share_link) |
 
 | Sub-Task #3 | Multimodal Dialog State Tracking (MM-DST) |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -114,7 +114,7 @@ Since our model is trained separately for each task, Download the model paramete
 | Output | Belief state for current user utterance |
 | Metrics | Slot F1, Intent F1 |
 | Performance (devtest) | 94.37/99.19 |
-| Checkpoint | [Checkpoint Link](task3) |
+| Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/14z92mgtOHlm832apGUhUa-q0MfI4Shib/view?usp=share_link) |
 
 | Sub-Task #4 | Multimodal Dialog Response Generation  |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -123,7 +123,7 @@ Since our model is trained separately for each task, Download the model paramete
 | Output | Assistant response utterance |
 | Metrics | BLEU-4 |
 | Performance (devtest) | 45.39 |
-| Checkpoint | [Checkpoint Link](task4) |
+| Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/1kt1tsSihK_I_fhfRAgp6ECZ-WzAmMS-c/view?usp=share_link) |
 
 
 ## **References**
