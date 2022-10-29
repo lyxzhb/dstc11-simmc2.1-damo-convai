@@ -143,6 +143,28 @@ Since our model is trained separately for each task, Download the model paramete
     url = "https://aclanthology.org/2021.emnlp-main.401",
     doi = "10.18653/v1/2021.emnlp-main.401",
     pages = "4903--4912",
+},
+@inproceedings{lee-etal-2022-learning,
+    title = "Learning to Embed Multi-Modal Contexts for Situated Conversational Agents",
+    author = "Lee, Haeju  and
+      Kwon, Oh Joon  and
+      Choi, Yunseon  and
+      Park, Minho  and
+      Han, Ran  and
+      Kim, Yoonhyung  and
+      Kim, Jinhyeon  and
+      Lee, Youngjune  and
+      Shin, Haebin  and
+      Lee, Kangwook  and
+      Kim, Kee-Eung",
+    booktitle = "Findings of the Association for Computational Linguistics: NAACL 2022",
+    month = jul,
+    year = "2022",
+    address = "Seattle, United States",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.findings-naacl.61",
+    doi = "10.18653/v1/2022.findings-naacl.61",
+    pages = "813--830",
 }
 ```
 
