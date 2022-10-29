@@ -22,6 +22,35 @@ cd task4
 pip install -r requirements.txt
 ```
 
+## **Data Preparation**
+
+For task 1, 2 and 3, download SIMMC 2.1 data and rearrange the `data_dstc11` folder in the following format.
+
+```
+|-- images                                                # scene images
+|   |-- cloth_store_1_1_1.png
+|   |-- cloth_store_1_1_2.png
+|   `-- ...
+|-- jsons                                                 # bbox and scene jsons
+|   |-- cloth_store_1_1_1_bbox.json
+|   |-- cloth_store_1_1_1_scene.json
+|   `-- ...
+|-- fashion_prefab_metadata_all.json                      # metadata (fashion)
+|-- furniture_prefab_metadata_all.json                    # metadata (furniture)
+|-- simmc2.1_dials_dstc11_dev.json                          # dialogue data (dev)
+|-- simmc2.1_dials_dstc11_devtest.json                      # dialogue data (devtest)
+|-- simmc2.1_dials_dstc11_teststd_public.json               # dialogue data (teststd)
+`-- simmc2.1_dials_dstc11_train.json                        # dialogue data (train)
+```
+
+For task 4, you can directly put SIMMC 2.1 data into the `data_dstc11` folder without rearragement.
+
+**NOTE**: Some of the scene images are corrupted and therefore ignored. We do not make use of images in this model other than getting image size.
+```
+cloth_store_1416238_woman_4_8.png
+cloth_store_1416238_woman_19_0.png
+cloth_store_1416238_woman_20_6.png
+
 ## **Evaluation**
 
 For each task, we provide the parameters of our model and the runnable code. The evaluation can be performed by running the corresponding bash file.

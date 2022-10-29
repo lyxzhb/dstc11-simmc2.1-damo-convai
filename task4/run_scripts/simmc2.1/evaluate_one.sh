@@ -11,7 +11,7 @@ selected_cols=0,1,2,3
 split='test'
 
 generation_pred_json=${para_result}/test_predict.json
-split_path=../../../simmcdata/simmc2.1_dials_dstc11_teststd_public.json
+split_path=../../../data_dstc11/simmc2.1_dials_dstc11_teststd_public.json
 save_path=${para_result}/dstc11-simmc-teststd-pred-subtask-4
 
 
