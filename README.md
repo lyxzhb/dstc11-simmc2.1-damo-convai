@@ -105,7 +105,7 @@ Since our model is trained separately for each task, Download the model paramete
 | Output |  Canonical object IDs |
 | Metrics |  Coref F1 |
 | Performance (devtest) | 94.40 |
-| Checkpoint | [Checkpoint Link](task2) |
+| Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/1Ji-JOYz2N5VQDjzT8jBi437xJo0pro_Y/view?usp=share_link) |
 
 | Sub-Task #3 | Multimodal Dialog State Tracking (MM-DST) |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -114,7 +114,7 @@ Since our model is trained separately for each task, Download the model paramete
 | Output | Belief state for current user utterance |
 | Metrics | Slot F1, Intent F1 |
 | Performance (devtest) | 94.37/99.19 |
-| Checkpoint | [Checkpoint Link](task3) |
+| Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/14z92mgtOHlm832apGUhUa-q0MfI4Shib/view?usp=share_link) |
 
 | Sub-Task #4 | Multimodal Dialog Response Generation  |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -123,7 +123,7 @@ Since our model is trained separately for each task, Download the model paramete
 | Output | Assistant response utterance |
 | Metrics | BLEU-4 |
 | Performance (devtest) | 45.39 |
-| Checkpoint | [Checkpoint Link](task4) |
+| Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/1kt1tsSihK_I_fhfRAgp6ECZ-WzAmMS-c/view?usp=share_link) |
 
 
 ## **References**
