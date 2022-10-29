@@ -12,7 +12,6 @@ selected_cols=0,1,2,3
 split='test'
 
 generation_pred_json=${para_result}/test_predict.json
-#split_path=../../../simmcdata/simmc2_dials_dstc10_devtest.json
 split_path=../../../simmcdata/simmc2.1_dials_dstc11_devtest.json
 save_path=${para_result}/subtask-4-generation.json
 
@@ -40,12 +39,12 @@ python3 format_task4_generation.py \
     --split-path=${split_path} \
     --save-path=${save_path}
 
-
+:<<!
 python3 response_evaluation_forall.py \
     --data_json_path=${split_path} \
     --model_response_path=${save_path} \
     --para_name=${para} \
     --bleu_path=${para_result} \
     --single_round_evaluation
-
+!
 
