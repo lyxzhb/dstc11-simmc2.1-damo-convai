@@ -18,12 +18,12 @@ from PIL import Image, ImageDraw, ImageFile, ImageEnhance, ImageFont
 #font = ImageFont.truetype('arialuni.ttf', 28)
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-all_objects_meta = np.load('../../data_dstc11/all_objects_meta.npy',allow_pickle=True).item()
+all_objects_meta = np.load('all_objects_meta.npy',allow_pickle=True).item()
 
 row_act = ['REQUEST:GET', 'ASK:GET', 'REQUEST:ADD_TO_CART', 'INFORM:GET', 'INFORM:REFINE', 'INFORM:DISAMBIGUATE', 'REQUEST:COMPARE', 'INFORM:COMPARE', 'REQUEST:DISAMBIGUATE', 'CONFIRM:ADD_TO_CART']
 converted_act = ['request get', 'ask get', 'request add to cart', 'inform get', 'inform refine', 'inform disambiguate', 'request compare', 'infrom compare', 'request disambiguate', 'compare add to cart']
 
-with open('../../data_dstc11/item2id.json', 'r') as f:
+with open('item2id.json', 'r') as f:
     item2id = json.load(f)
 
 def get_json_value(json_data, key_name):
