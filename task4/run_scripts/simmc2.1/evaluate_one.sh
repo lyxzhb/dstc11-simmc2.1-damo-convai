@@ -11,8 +11,8 @@ selected_cols=0,1,2,3
 split='test'
 
 generation_pred_json=${para_result}/test_predict.json
-split_path=../../../simmcdata/simmc2.1_dials_dstc11_devtest.json
-save_path=${para_result}/subtask-4-generation.json
+split_path=../../../simmcdata/simmc2.1_dials_dstc11_teststd_public.json
+save_path=${para_result}/dstc11-simmc-teststd-pred-subtask-4
 
 
 CUDA_VISIBLE_DEVICES=$2 python3 -m torch.distributed.launch --nproc_per_node=$3 --master_port=${MASTER_PORT} ../../evaluate.py \
