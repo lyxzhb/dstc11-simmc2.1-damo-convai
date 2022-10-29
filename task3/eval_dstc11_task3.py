@@ -88,11 +88,13 @@ def evaluate(args, model, tokenizer, all_objects_meta, fashion_slot_map, furnitu
             intent_pred_list.extend(intent_pred)
             slot_values_target_list.extend(slot_values_target)
             slot_values_pred_list.extend(slot_values_pred)
-    
-    # with open('./scripts/result/slot_values_pred_list.json', 'w') as f_out:
-    #     json.dump(slot_values_pred_list, f_out, indent=4, ensure_ascii=False)
-    # with open('./scripts/result/intent_pred_list.json', 'w') as f_out:
-    #     json.dump(intent_pred_list, f_out, indent=4, ensure_ascii=False)
+            
+    with open(join(args.checkpoint_name_or_path, 'simmc2.1_task3_predicted.json'), 'w') as f_out:
+        json.dump({
+            'slot_values': slot_values_pred_list,
+            'intent': intent_pred_list
+        }, f_out, indent=4, ensure_ascii=False)
+        
         
     intent_pre, intent_rec, intent_f1, sup = precision_recall_fscore_support(intent_target_list, intent_pred_list)
     
@@ -329,10 +331,6 @@ def main():
 
     # 展开训练
     evaluate_result = evaluate(args, model, tokenizer, all_objects_meta, fashion_slot_map, furniture_slot_map)
-    
-    with open(join(args.checkpoint_name_or_path, 'evaluate_result.json'), 'w') as f_out:
-        json.dump(evaluate_result, f_out, indent=4, ensure_ascii=False)
-        
     print(evaluate_result)
 
 

@@ -6,15 +6,40 @@ DSTC11-Track 1 : The Third Situated Interactive MultiModal Conversations (SIMMC 
 
 Team: damo-convai
 
-## **Environment**
-
 ## **Result**
 
 For the results of each task, we put the prediction results of the test-std set in the corresponding folder
 
-## **Training**
+## **Environment**
+Install the conda virtual environment by:
+```shell
+conda env create -f simmc.yml
+```
 
 ## **Evaluation**
+
+For each task, we provide the parameters of our model and the runnable code. The evaluation can be performed by running the corresponding bash file.
+
+### **(Subtask 1) Ambiguous Candidate Identification**
+```shell
+cd task1/bash
+bash run_dstc11_task1.sh
+```
+
+### **(Subtask 2) Multimodal Coreference Resolution**
+```shell
+cd task2/bash
+bash run_dstc11_task2.sh
+```
+
+### **(Subtask 3) Multimodal Dialog State Tracking (MM-DST)**
+```shell
+cd task3/bash
+bash run_dstc11_task3.sh
+```
+
+**NOTE**: For task 1,2,3, the preprocessing program need to be executed in advance `taskX/scripts/process_for_dstc11_taskX.py`, and the preprocessed dataset can be found under `task1/data` directory.
+All script will print the result (Precision/Recall/F1-score) and create a line-by-line *.json prediction for each turn of the preprocessed dataset.
 
 ## **Model Parameter**
 
