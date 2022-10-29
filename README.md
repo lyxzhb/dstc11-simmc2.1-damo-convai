@@ -50,6 +50,7 @@ For task 4, you can directly put SIMMC 2.1 data into the `data_dstc11` folder wi
 cloth_store_1416238_woman_4_8.png
 cloth_store_1416238_woman_19_0.png
 cloth_store_1416238_woman_20_6.png
+```
 
 ## **Evaluation**
 
