@@ -6,8 +6,7 @@ user_dir=../../ofa_module
 para_result=./$1
 para=${para_result}/checkpoint_best.pt
 
-#data=../../dataset/simmc2/simmc2_devtest_withlast.tsv
-data=../../../SPRING/dataset/simmc2/simmc2_devtest_withlast.tsv
+data=../../dataset/simmc2.1/simmc2.1_teststd.tsv
 selected_cols=0,1,2,3
 split='test'
 
