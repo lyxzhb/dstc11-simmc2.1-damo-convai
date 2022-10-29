@@ -20,6 +20,29 @@ Install the conda virtual environment by:
 conda env create -f simmc.yml
 ```
 
+## **Dataset**
+
+Download the dataset from repository via git-lfs and rearrange the data folder `data_dstc11` in the following format.
+
+```
+|-- data_dstc11
+|-- |-- images                                                # scene images
+|-- |   |-- cloth_store_1_1_1.png
+|-- |   |-- cloth_store_1_1_2.png
+|-- |   `-- ...
+|-- |-- jsons                                                 # bbox and scene jsons
+|-- |   |-- cloth_store_1_1_1_bbox.json
+|-- |   |-- cloth_store_1_1_1_scene.json
+|-- |   `-- ...
+|-- |-- fashion_prefab_metadata_all.json                      # metadata (fashion)
+|-- |-- furniture_prefab_metadata_all.json                    # metadata (furniture)
+|-- |-- simmc2.1_dials_dstc11_dev.json                          # dialogue data (dev)
+|-- |-- simmc2.1_dials_dstc11_devtest.json                      # dialogue data (devtest)
+|-- |-- simmc2.1_dials_dstc11_train.json                        # dialogue data (train)
+|-- |-- simmc2.1_dials_dstc11_teststd_public.json                        # dialogue data (teststd_public)
+```
+
+
 ## **Evaluation**
 
 For each task, we provide the parameters of our model and the runnable code. The evaluation can be performed by running the corresponding bash file.
