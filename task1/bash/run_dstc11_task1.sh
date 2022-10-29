@@ -22,7 +22,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 nohup python -m torch.distributed.launch --
   --num_train_epochs=300 > ./$log_dir/$time_dir/config.txt 2>./$log_dir/$time_dir/output.txt 
 
 # Evaluate
-CUDA_VISIBLE_DEVICES=0 python eval_vlbert_multi_task_task1.py \
+CUDA_VISIBLE_DEVICES=0 python eval_dstc11_task1.py \
   --item2id=./$data_dir/item2id.json \
   --train_input_file=./$data_dir/simmc2.1_dials_dstc11_task1_phrase2_predict.json \
   --eval_input_file=./$data_dir/simmc2.1_dials_dstc11_task1_phrase2_eval_teststd.json \

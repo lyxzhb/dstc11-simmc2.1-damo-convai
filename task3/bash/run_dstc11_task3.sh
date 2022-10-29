@@ -25,7 +25,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 nohup /opt/conda/envs/simmc/bin/python -m t
 
 
 # Evaluate
-CUDA_VISIBLE_DEVICES=0 python eval_vlbert_multi_task_task3.py \
+CUDA_VISIBLE_DEVICES=0 python eval_dstc11_task3.py \
   --item2id=./$data_dir/item2id.json \
   --train_input_file=./$data_dir/simmc2.1_dials_dstc11_task3_predict.json \
   --eval_input_file=./$data_dir/simmc2.1_dials_dstc11_task3_eval.json \
@@ -34,8 +34,7 @@ CUDA_VISIBLE_DEVICES=0 python eval_vlbert_multi_task_task3.py \
   --add_special_tokens=./$data_dir/simmc2_special_dst_tokens.json \
   --output_dir=./save_model/dstc11-checkpoint \
   --backbone=allenai/longformer-base-4096 \
-  --checkpoint_name_or_path=allenai/longformer-base-4096 \
-  \
+  --checkpoint_name_or_path=checkpoint_name_or_path_of_task3 \
   --train_batch_size=12 \
   --eval_batch_size=4 \
   --learning_rate=5e-5 \

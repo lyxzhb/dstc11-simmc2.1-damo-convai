@@ -23,7 +23,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 nohup /opt/conda/envs/simmc/bin/python -m t
 
 
 # Evaluate
-CUDA_VISIBLE_DEVICES=0 python eval_vlbert_multi_task_task2.py \
+CUDA_VISIBLE_DEVICES=0 python eval_dstc11_task2.py \
   --item2id=./$data_dir/item2id.json \
   --train_input_file=./$data_dir/simmc2.1_dials_dstc11_task2_predict.json \
   --eval_input_file=./$data_dir/simmc2.1_dials_dstc11_task2_eval_teststd.json \
