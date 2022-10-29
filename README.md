@@ -96,7 +96,7 @@ Since our model is trained separately for each task, Download the model paramete
 | Output |  Canonical object IDs |
 | Metrics | Object Identification F1 |
 | Performance (devtest) | 70.31 |
-| Checkpoint | [Checkpoint Link](task1) |
+| Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/1yPlkHdGnJMwXfL0NLBc6ImaRCT_sxbrB/view?usp=share_link) |
 
 | Sub-Task #2 | Multimodal Coreference Resolution |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------|
