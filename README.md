@@ -144,7 +144,7 @@ Since our model is trained separately for each task, Download the model paramete
 
 ## **Result**
 
-For the results of each task, we put the prediction results of the test-std set in the corresponding folder
+For the results of each task, we put the prediction results of the test-std set in the [test_results](https://github.com/lyxzhb/dstc11-simmc2.1-damo-convai/tree/main/teststd_result) folder
 
 ## 💬 **References**
 
