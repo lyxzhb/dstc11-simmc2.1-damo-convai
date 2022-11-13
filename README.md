@@ -69,7 +69,7 @@ cloth_store_1416238_woman_19_0.png
 cloth_store_1416238_woman_20_6.png
 ```
 
-## **Inference**
+## 🌟 **Inference**
 
 For each task, we provide the parameters of our model and the runnable code. The inference can be performed by running the corresponding bash file.
 
@@ -102,7 +102,7 @@ bash evaluate_one.sh task4_para 0 1
 
 **NOTE**: For task 4, the preprocessing program need to be executed in advance `task4/dataset/gen_simmc2.1.py`, and the preprocessed tsv format dataset can be found under `task4/dataset/simmc2.1` directory. For downloaded checkpoint, it should be put into 'task4/run_scripts/simmc2.1/task4_para/task4_para.pt'.
 
-## **Model Parameter**
+## 🐣 **Model Parameter**
 
 Since our model is trained separately for each task, Download the model parameters by one of the following methods:
 
