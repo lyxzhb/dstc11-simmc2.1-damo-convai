@@ -126,7 +126,7 @@ def process_metadata_dict(scene_dir, scene_ids, all_metadata):
 
 
 def process_for_vlbert_task3():
-    ''' 为VLBert模型的预训练准备'''
+    ''' 为VLBert模型的训练准备'''
     scene_dir = '../../data_dstc11/jsons'
     image_dir = '../../data_dstc11/images'
     obj_item2id_path = '../data/item2id.json'
@@ -223,6 +223,9 @@ def process_for_vlbert_task3():
 
     with open('../data_dstc11/task2/simmc2.1_dials_dstc11_task3_eval.json', 'w') as f_out:
         json.dump(output, f_out, indent=4, ensure_ascii=False)
+    
+    # with open('../data_dstc11/task2/simmc2.1_dials_dstc11_task3_eval_teststd.json', 'w') as f_out:
+    #     json.dump(output, f_out, indent=4, ensure_ascii=False)
 
     
 

@@ -283,7 +283,6 @@ def main():
 
     model.to(args.device)
 
-    # meta的信息转化为token id：<@1000>起/<@2000>起
     with open(args.item2id, 'r') as f:
         item2id = json.load(f)
 
@@ -309,7 +308,7 @@ def main():
             'type': meta.type,
             'price': str(meta.price),
             'size': meta.size
-        }  # Fashion领域有10项Feature (Visual/Not Visual)
+        }
         all_objects_meta[object_special_id] = object_meta
 
     for meta in furniture_meta:
@@ -321,7 +320,7 @@ def main():
             'materials': meta.materials,
             'price': meta.price,
             'type': meta.type
-        }  # Furniture领域有6项Feature (Visual/Not Visual)
+        } 
         all_objects_meta[object_special_id] = object_meta
     
     if args.local_rank in [-1, 0]:
@@ -329,7 +328,6 @@ def main():
         print(vars(args))
         print()
 
-    # 展开训练
     evaluate_result = evaluate(args, model, tokenizer, all_objects_meta, fashion_slot_map, furniture_slot_map)
     print(evaluate_result)
 

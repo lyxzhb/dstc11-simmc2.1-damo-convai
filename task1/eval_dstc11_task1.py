@@ -33,7 +33,6 @@ from utils.dataset import get_task1_dataset, DataLoaderX
 
 
 def evaluate(args, model, tokenizer, all_objects_meta):
-    ''' 模型方法的评估函数'''
     def collate_eval_bart(examples):
         enc_input = list(map(lambda x: x[0], examples))
         enc_attention_mask = list(map(lambda x: x[1], examples))
@@ -61,10 +60,6 @@ def evaluate(args, model, tokenizer, all_objects_meta):
     eval_dataset = get_task1_dataset(args, tokenizer, all_objects_meta, eval=True, pretrain=False)
     eval_sampler = SequentialSampler(eval_dataset)
     eval_dataloader = DataLoaderX(eval_dataset, sampler=eval_sampler, num_workers=args.num_workers, batch_size=args.eval_batch_size, collate_fn=collate_eval_bart, pin_memory=True)
-
-    # with open('/data/nt12_ssd_gluster/myself/simmc/VLBART/scripts/result/simmc2.1_task1_nextsys_predicted.json') as f_in:
-    #     generate_predict_data = json.load(f_in)
-        
     
     n_pred_objects, n_true_objects, n_correct_objects = 0, 0, 0
     output_data = {}
@@ -92,10 +87,6 @@ def evaluate(args, model, tokenizer, all_objects_meta):
                 object_id_list = [int(item[1:-1]) for item in sub_list]
                 
                 output_data_list.append(object_id_list)
-                
-                # dialog_output = output_data.get(str(dialog_id), {})
-                # dialog_output[str(turn_id)] = object_id_list
-                # output_data[str(dialog_id)] = dialog_output
                         
     
     with open(join(args.checkpoint_name_or_path, 'simmc2.1_task1_predicted.json'), 'w') as f_out:
@@ -247,15 +238,6 @@ def main():
 
     args = parser.parse_args()
 
-    # if args.output_dir:  # 获取 TimeString Dir
-    #     args.output_dir = join(args.output_dir, datetime.now().strftime("%m%d%H%M")+'_vlbert')
-    #     if not exists(args.output_dir) and args.local_rank in [-1, 0]:
-    #         os.makedirs(args.output_dir, exist_ok=True)
-
-    # if args.local_rank in [-1, 0]:
-    #     with open(join(args.output_dir, 'config.json'), 'w') as f_in:
-    #         json.dump(vars(args), f_in, indent=4, ensure_ascii=False)
-
     args.n_gpu = torch.cuda.device_count() if torch.cuda.is_available() else 0
     args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
@@ -280,7 +262,6 @@ def main():
 
     model.to(args.device)
 
-    # meta的信息转化为token id：<@1000>起/<@2000>起
     with open(args.item2id, 'r') as f:
         item2id = json.load(f)
 
@@ -306,7 +287,7 @@ def main():
             'type': meta.type,
             'price': str(meta.price),
             'size': meta.size
-        }  # Fashion领域有10项Feature (Visual/Not Visual)
+        }
         all_objects_meta[object_special_id] = object_meta
 
     for meta in furniture_meta:
@@ -318,7 +299,7 @@ def main():
             'materials': meta.materials,
             'price': meta.price,
             'type': meta.type
-        }  # Furniture领域有6项Feature (Visual/Not Visual)
+        }
         all_objects_meta[object_special_id] = object_meta
     
     if args.local_rank in [-1, 0]:
@@ -326,7 +307,6 @@ def main():
         print(vars(args))
         print()
 
-    # 展开训练
     evaluate_result = evaluate(args, model, tokenizer, all_objects_meta)
     print(evaluate_result)
 

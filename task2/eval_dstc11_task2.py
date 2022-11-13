@@ -234,15 +234,6 @@ def main():
 
     args = parser.parse_args()
 
-    # if args.output_dir:  # 获取 TimeString Dir
-    #     args.output_dir = join(args.output_dir, datetime.now().strftime("%m%d%H%M")+'_vlbert')
-    #     if not exists(args.output_dir) and args.local_rank in [-1, 0]:
-    #         os.makedirs(args.output_dir, exist_ok=True)
-
-    # if args.local_rank in [-1, 0]:
-    #     with open(join(args.output_dir, 'config.json'), 'w') as f_in:
-    #         json.dump(vars(args), f_in, indent=4, ensure_ascii=False)
-
     args.n_gpu = torch.cuda.device_count() if torch.cuda.is_available() else 0
     args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
@@ -267,7 +258,6 @@ def main():
 
     model.to(args.device)
 
-    # meta的信息转化为token id：<@1000>起/<@2000>起
     with open(args.item2id, 'r') as f:
         item2id = json.load(f)
 
@@ -293,7 +283,7 @@ def main():
             'type': meta.type,
             'price': str(meta.price),
             'size': meta.size
-        }  # Fashion领域有10项Feature (Visual/Not Visual)
+        }
         all_objects_meta[object_special_id] = object_meta
 
     for meta in furniture_meta:
@@ -305,7 +295,7 @@ def main():
             'materials': meta.materials,
             'price': meta.price,
             'type': meta.type
-        }  # Furniture领域有6项Feature (Visual/Not Visual)
+        }
         all_objects_meta[object_special_id] = object_meta
     
     if args.local_rank in [-1, 0]:
@@ -313,7 +303,6 @@ def main():
         print(vars(args))
         print()
 
-    # 展开训练
     evaluate_result = evaluate(args, model, tokenizer, all_objects_meta)
     print(evaluate_result)
 

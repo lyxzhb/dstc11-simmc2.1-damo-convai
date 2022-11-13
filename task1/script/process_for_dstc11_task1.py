@@ -120,7 +120,7 @@ def process_metadata_dict(scene_dir, scene_ids, all_metadata):
 
 
 def process_for_vlbert_task1():
-    ''' 为VLBert模型的预训练准备'''
+    ''' 为VLBert模型的训练准备'''
     scene_dir = '../../data_dstc11/jsons'
     image_dir = '../../data_dstc11/images'
     obj_item2id_path = '../data/item2id.json'
