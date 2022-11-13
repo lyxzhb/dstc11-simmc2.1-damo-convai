@@ -6,7 +6,7 @@ DSTC11-Track 1 : **The Third Situated Interactive MultiModal Conversations (SIMM
 
 Team: **damo-convai**
 
-participant: **Yuxing Long, Huibin Zhang, Huibin Yuan**
+Participant: **Yuxing Long, Huibin Zhang, Huibin Yuan**
 
 For task 1, 2 and 3, we design discriminative models based on transformer-encoder structure (Longformer). To predict ambiguous candidates, coreference resolution, and belief state, we encode dialogue history and attach task-specific heads to the output of encoder. Additionally, we line up the item vectors (bbox position embedding) with their respective attribute tokens in the inputted token embedding. Auxiliary heads for predicting attributes are added as additional supervision signals.
 
