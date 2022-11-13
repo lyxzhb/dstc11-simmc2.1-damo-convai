@@ -1,4 +1,4 @@
-# DSTC11-SIMMC2.1-DAMO-ConvAI
+# DSTC11 SIMMC2.1 DAMO-ConvAI
 
 <p align="center">
     <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-red.svg">
