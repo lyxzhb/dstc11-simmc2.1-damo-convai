@@ -35,8 +35,7 @@ For task 4, we propose a generative multimodal model which takes dialogue histor
 Install the conda virtual environment by:
 ```shell
 conda env create -f simmc.yml
-cd task4
-pip install -r requirements.txt
+pip install -r ./task4/requirements.txt
 ```
 
 ## 👐 **Data Preparation**
