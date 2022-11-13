@@ -17,7 +17,7 @@ DSTC11-Track 1 : **The Third Situated Interactive MultiModal Conversations (SIMM
 
 Team: **DAMO-ConvAI**
 
-Participant: **Yuxing Long, Huibin Zhang, Huibin Yuan**
+Participant: **Yuxing Long, Huibin Zhang, Binyuan Hui**
 
 ## 🏴 **Overview**
 
