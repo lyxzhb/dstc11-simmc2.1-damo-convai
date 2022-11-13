@@ -62,7 +62,7 @@ For task 1, 2 and 3, download SIMMC 2.1 data and rearrange the `data_dstc11` fol
 
 For task 4, you can directly put SIMMC 2.1 data into the `data_dstc11` folder without rearragement.
 
-**NOTE**: Some of the scene images are corrupted and therefore ignored. We do not make use of images in this model other than getting image size.
+**NOTE**: Some of the scene images are corrupted and therefore ignored.
 ```
 cloth_store_1416238_woman_4_8.png
 cloth_store_1416238_woman_19_0.png
