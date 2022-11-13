@@ -41,7 +41,7 @@ pip install -r requirements.txt
 
 ## **Data Preparation**
 
-For task 1, 2 and 3, download SIMMC 2.1 data and rearrange the `data_dstc11` folder in the following format.
+For task 1, 2 and 3, download [SIMMC 2.1 data](https://github.com/facebookresearch/simmc2/tree/main/data) and rearrange the `data_dstc11` folder in the following format.
 
 ```
 |-- images                                                # scene images
