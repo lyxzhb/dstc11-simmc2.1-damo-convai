@@ -21,7 +21,7 @@ Participant: **Yuxing Long, Huibin Zhang, Binyuan Hui**
 
 ## 🏴 **Overview**
 
-For task 1, 2 and 3, we design discriminative models based on transformer-encoder structure (Longformer). To predict ambiguous candidates, coreference resolution, and belief state, we encode dialogue history and attach task-specific heads to the output of encoder. Additionally, we line up the item vectors (bbox position embedding) with their respective attribute tokens in the inputted token embedding. Auxiliary heads for predicting attributes are added as additional supervision signals.
+For task 1, 2 and 3, we design discriminative models based on transformer-encoder structure (🤗 [Longformer](https://huggingface.co/allenai/longformer-base-4096)). To predict ambiguous candidates, coreference resolution, and belief state, we encode dialogue history and attach task-specific heads to the output of encoder. Additionally, we line up the item vectors (bbox position embedding) with their respective attribute tokens in the inputted token embedding. Auxiliary heads for predicting attributes are added as additional supervision signals.
 
 For task 4, we propose a generative multimodal model which takes dialogue history and non-visual attributes as textual input, takes corresponding scene images as visual input and generates system response autoregressively.
 
