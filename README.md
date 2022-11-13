@@ -69,9 +69,9 @@ cloth_store_1416238_woman_19_0.png
 cloth_store_1416238_woman_20_6.png
 ```
 
-## **Evaluation**
+## **Inference**
 
-For each task, we provide the parameters of our model and the runnable code. The evaluation can be performed by running the corresponding bash file.
+For each task, we provide the parameters of our model and the runnable code. The inference can be performed by running the corresponding bash file.
 
 ### **(Subtask 1) Ambiguous Candidate Identification**
 ```shell
