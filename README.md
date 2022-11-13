@@ -1,14 +1,35 @@
-# dstc11-simmc2.1-damo-convai
+# DSTC11-SIMMC2.1-DAMO-ConvAI
 
-## **Overview**
+<p align="center">
+    <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-red.svg">
+    </a>
+  	<a href="https://github.com/huggingface/transformers/tree/main/examples/research_projects/tapex">
+      <img alt="🤗 transformers support" src="https://img.shields.io/badge/🤗 transformers-master-green" />
+    </a>
+    <a href="support os"><img src="https://img.shields.io/badge/os-linux%2C%20win%2C%20mac-pink.svg">
+    </a>
+    <a href=""><img src="https://img.shields.io/badge/python-3.7+-aff.svg">
+    </a>
+    <br />
+</p>
 
 DSTC11-Track 1 : **The Third Situated Interactive MultiModal Conversations (SIMMC 2.1) Challenge 2022**
 
-Team: **damo-convai**
+Team: **DAMO-ConvAI**
+
+Participant: **Yuxing Long, Huibin Zhang, Huibin Yuan**
+
+## 🏴 **Overview**
 
 For task 1, 2 and 3, we design discriminative models based on transformer-encoder structure (Longformer). To predict ambiguous candidates, coreference resolution, and belief state, we encode dialogue history and attach task-specific heads to the output of encoder. Additionally, we line up the item vectors (bbox position embedding) with their respective attribute tokens in the inputted token embedding. Auxiliary heads for predicting attributes are added as additional supervision signals.
 
 For task 4, we propose a generative multimodal model which takes dialogue history and non-visual attributes as textual input, takes corresponding scene images as visual input and generates system response autoregressively.
+
+## 🔥 News
+
+- 👏🏻  2022.10.13: The repository `dstc11-simmc2.1-damo-comvai` for [DSTC11 Track1](https://github.com/facebookresearch/simmc2) is created.
+- 👏🏻  2022.10.28: We submit our test-std prediction results to SIMMC and make our repository public available.
+- 👏🏻  2022.11.5: We are officialy announced as the *Winner* of DSTC11 Track1 Subtask2,3,4 and *Runner-up* of DSTC11 Track1 Subtask1.
 
 ## **Result**
 
