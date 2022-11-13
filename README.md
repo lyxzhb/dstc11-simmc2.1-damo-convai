@@ -164,6 +164,12 @@ For the results of each task, we put the prediction results of the test-std set 
     doi = "10.18653/v1/2021.emnlp-main.401",
     pages = "4903--4912",
 },
+@article{Beltagy2020Longformer,
+  title={Longformer: The Long-Document Transformer},
+  author={Iz Beltagy and Matthew E. Peters and Arman Cohan},
+  journal={arXiv:2004.05150},
+  year={2020},
+}
 @inproceedings{lee-etal-2022-learning,
     title = "Learning to Embed Multi-Modal Contexts for Situated Conversational Agents",
     author = "Lee, Haeju  and
