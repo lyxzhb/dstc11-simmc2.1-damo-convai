@@ -145,6 +145,7 @@ def process_for_vlbert_task3():
 
     output = []
     
+    # split_list = ['teststd_public']  # For Final Evaluation
     split_list = ['dev']  # For Evaluation
     # split_list = ['train']  # For Training
 

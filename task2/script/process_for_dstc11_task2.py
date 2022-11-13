@@ -141,9 +141,10 @@ def process_for_vlbert_task2():
 
     output = []
     
+    # split_list = ['teststd_public']  # For Final Evaluation
     split_list = ['dev']  # For Evaluation
-    # split_list = ['train]  # For Training
-
+    # split_list = ['train']  # For Training
+    
     for split in split_list:
         
         file_path = f'../../data_dstc11/simmc2.1_dials_dstc11_{split}.json'

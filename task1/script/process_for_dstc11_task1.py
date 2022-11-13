@@ -137,6 +137,7 @@ def process_for_vlbert_task1():
         object_item2id = json.load(f_in)
 
     output = []
+    # split_list = ['teststd_public']  # For Final Evaluation
     split_list = ['dev']  # For Evaluation
     # split_list = ['train']  # For Training
 
@@ -210,7 +211,7 @@ def process_for_vlbert_task1():
     with open('../data/simmc2.1_dials_dstc11_task1_eval.json', 'w') as f_out:
         json.dump(output, f_out, indent=4, ensure_ascii=False)
     
-    # with open('../data/simmc2.1_dials_dstc11_task1_eval_total.json', 'w') as f_out:
+    # with open('../data/simmc2.1_dials_dstc11_task1_eval_teststd.json', 'w') as f_out:
     #     json.dump(output, f_out, indent=4, ensure_ascii=False)
 
     
