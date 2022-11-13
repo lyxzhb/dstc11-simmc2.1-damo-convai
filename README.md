@@ -31,10 +31,6 @@ For task 4, we propose a generative multimodal model which takes dialogue histor
 - 👏🏻  2022.10.28: We submit our test-std prediction results to SIMMC and make our repository public available.
 - 👏🏻  2022.11.5: We are officialy announced as the *Winner* of DSTC11 Track1 Subtask2,3,4 and *Runner-up* of DSTC11 Track1 Subtask1.
 
-## **Result**
-
-For the results of each task, we put the prediction results of the test-std set in the corresponding folder
-
 ## **Environment**
 Install the conda virtual environment by:
 ```shell
@@ -146,6 +142,9 @@ Since our model is trained separately for each task, Download the model paramete
 | Performance (devtest) | 45.39 |
 | Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/1kt1tsSihK_I_fhfRAgp6ECZ-WzAmMS-c/view?usp=share_link) |
 
+## **Result**
+
+For the results of each task, we put the prediction results of the test-std set in the corresponding folder
 
 ## 💬 **References**
 
