@@ -1,5 +1,6 @@
 # dstc11-simmc2.1-damo-convai
 
+
 DSTC11-Track 1 : **The Third Situated Interactive MultiModal Conversations (SIMMC 2.1) Challenge 2022**
 
 Team: **damo-convai**
@@ -12,11 +13,11 @@ For task 1, 2 and 3, we design discriminative models based on transformer-encode
 
 For task 4, we propose a generative multimodal model which takes dialogue history and non-visual attributes as textual input, takes corresponding scene images as visual input and generates system response autoregressively.
 
-## News
+## 🔥 News
 
 - 👏🏻  2022.10.13: The repository `dstc11-simmc2.1-damo-comvai` for [DSTC11 Track1](https://github.com/facebookresearch/simmc2) is created.
 - 👏🏻  2022.10.28: We submit our test-std prediction results to SIMMC and make our repository public available.
-- 👏🏻  2022.11.5: We are officialy announced as the *winner* of DSTC11 Track1 Subtask2,3,4 and *runner-up* of DSTC11 Track1 Subtask1.
+- 👏🏻  2022.11.5: We are officialy announced as the *Winner* of DSTC11 Track1 Subtask2,3,4 and *Runner-up* of DSTC11 Track1 Subtask1.
 
 ## **Result**
 
