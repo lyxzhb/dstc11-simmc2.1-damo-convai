@@ -13,9 +13,9 @@
     <br />
 </p>
 
-DSTC11-Track 1 : **The Third Situated Interactive MultiModal Conversations (SIMMC 2.1) Challenge 2022**
+DSTC11-Track 1 : [**The Third Situated Interactive MultiModal Conversations (SIMMC 2.1) Challenge 2022**](https://github.com/facebookresearch/simmc2)
 
-Team: **DAMO-ConvAI**
+Team: [**DAMO-ConvAI**](https://github.com/AlibabaResearch/DAMO-ConvAI)
 
 Participant: **Yuxing Long, Huibin Zhang, Binyuan Hui**
 
