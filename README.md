@@ -60,7 +60,7 @@ For task 1, 2 and 3, download [SIMMC 2.1 data](https://github.com/facebookresear
 `-- simmc2.1_dials_dstc11_train.json                        # dialogue data (train)
 ```
 
-For task 4, you can directly put SIMMC 2.1 data into the `data_dstc11` folder without rearragement.
+For task 4, you can directly put [SIMMC 2.1 data](https://github.com/facebookresearch/simmc2/tree/main/data) into the `data_dstc11` folder without rearragement.
 
 **NOTE**: Some of the scene images are corrupted and therefore ignored.
 ```
