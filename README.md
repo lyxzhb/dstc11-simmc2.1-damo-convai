@@ -147,7 +147,7 @@ Since our model is trained separately for each task, Download the model paramete
 | Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/1kt1tsSihK_I_fhfRAgp6ECZ-WzAmMS-c/view?usp=share_link) |
 
 
-## **References**
+## 💬 **References**
 
 ```
 @inproceedings{kottur-etal-2021-simmc,
@@ -189,6 +189,6 @@ Since our model is trained separately for each task, Download the model paramete
 }
 ```
 
-## **License**
+## 📝 **License**
 
 Our repository is released under MIT License, see [LICENSE](LICENSE) for details.
