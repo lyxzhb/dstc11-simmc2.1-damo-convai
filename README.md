@@ -1,7 +1,7 @@
 # DSTC11-SIMMC2.1-DAMO-ConvAI
 
 <p align="center">
-    <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT%202-red.svg">
+    <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-red.svg">
     </a>
   	<a href="https://github.com/huggingface/transformers/tree/main/examples/research_projects/tapex">
       <img alt="🤗 transformers support" src="https://img.shields.io/badge/🤗 transformers-master-green" />
