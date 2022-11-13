@@ -1,5 +1,15 @@
 # dstc11-simmc2.1-damo-convai
 
+<p align="center">
+  	<a href="https://github.com/huggingface/transformers/tree/main/examples/research_projects/tapex">
+      <img alt="🤗 transformers support" src="https://img.shields.io/badge/🤗 transformers-master-green" />
+    </a>
+    <a href="support os"><img src="https://img.shields.io/badge/os-linux%2C%20win%2C%20mac-pink.svg">
+    </a>
+    <a href=""><img src="https://img.shields.io/badge/python-3.7+-aff.svg">
+    </a>
+    <br />
+</p>
 
 DSTC11-Track 1 : **The Third Situated Interactive MultiModal Conversations (SIMMC 2.1) Challenge 2022**
 
@@ -7,7 +17,7 @@ Team: **damo-convai**
 
 Participant: **Yuxing Long, Huibin Zhang, Huibin Yuan**
 
-## **Overview**
+## 🏴 **Overview**
 
 For task 1, 2 and 3, we design discriminative models based on transformer-encoder structure (Longformer). To predict ambiguous candidates, coreference resolution, and belief state, we encode dialogue history and attach task-specific heads to the output of encoder. Additionally, we line up the item vectors (bbox position embedding) with their respective attribute tokens in the inputted token embedding. Auxiliary heads for predicting attributes are added as additional supervision signals.
 
