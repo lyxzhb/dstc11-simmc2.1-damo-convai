@@ -53,10 +53,10 @@ For task 1, 2 and 3, download [SIMMC 2.1 data](https://github.com/facebookresear
 |   `-- ...
 |-- fashion_prefab_metadata_all.json                      # metadata (fashion)
 |-- furniture_prefab_metadata_all.json                    # metadata (furniture)
-|-- simmc2.1_dials_dstc11_dev.json                          # dialogue data (dev)
-|-- simmc2.1_dials_dstc11_devtest.json                      # dialogue data (devtest)
-|-- simmc2.1_dials_dstc11_teststd_public.json               # dialogue data (teststd)
-`-- simmc2.1_dials_dstc11_train.json                        # dialogue data (train)
+|-- simmc2.1_dials_dstc11_dev.json                        # dialogue data (dev)
+|-- simmc2.1_dials_dstc11_devtest.json                    # dialogue data (devtest)
+|-- simmc2.1_dials_dstc11_teststd_public.json             # dialogue data (teststd)
+`-- simmc2.1_dials_dstc11_train.json                      # dialogue data (train)
 ```
 
 For task 4, you can directly put [SIMMC 2.1 data](https://github.com/facebookresearch/simmc2/tree/main/data) into the `data_dstc11` folder without rearragement.
@@ -111,7 +111,8 @@ Since our model is trained separately for each task, Download the model paramete
 | Input | Current user utterance, Dialog context, Multimodal context |
 | Output |  Canonical object IDs |
 | Metrics | Object Identification F1 |
-| Performance (devtest) | 70.31 |
+| Devtest Performance | 70.31 |
+| Teststd Performance | 67.26 |
 | Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/1yPlkHdGnJMwXfL0NLBc6ImaRCT_sxbrB/view?usp=share_link) |
 
 | Sub-Task #2 | Multimodal Coreference Resolution |
@@ -120,7 +121,8 @@ Since our model is trained separately for each task, Download the model paramete
 | Input | Current user utterance, Dialog context, Multimodal context |
 | Output |  Canonical object IDs |
 | Metrics |  Coref F1 |
-| Performance (devtest) | 94.40 |
+| Devtest Performance | 94.40 |
+| Teststd Performance | 94.29 |
 | Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/1Ji-JOYz2N5VQDjzT8jBi437xJo0pro_Y/view?usp=share_link) |
 
 | Sub-Task #3 | Multimodal Dialog State Tracking (MM-DST) |
@@ -129,7 +131,8 @@ Since our model is trained separately for each task, Download the model paramete
 | Input | Current user utterance, Dialogue context, Multimodal context |
 | Output | Belief state for current user utterance |
 | Metrics | Slot F1, Intent F1 |
-| Performance (devtest) | 94.37/99.19 |
+| Devtest Performance | 94.37/99.19 |
+| Teststd Performance | 94.24/95.98 |
 | Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/14z92mgtOHlm832apGUhUa-q0MfI4Shib/view?usp=share_link) |
 
 | Sub-Task #4 | Multimodal Dialog Response Generation  |
@@ -138,7 +141,8 @@ Since our model is trained separately for each task, Download the model paramete
 | Input | Current user utterance, Dialog context, Multimodal context, (Ground-truth API Calls) |
 | Output | Assistant response utterance |
 | Metrics | BLEU-4 |
-| Performance (devtest) | 45.39 |
+| Devtest Performance | 45.39 |
+| Teststd Performance | 40.93 |
 | Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/1kt1tsSihK_I_fhfRAgp6ECZ-WzAmMS-c/view?usp=share_link) |
 
 ## 📜 **Result**
