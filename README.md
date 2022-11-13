@@ -1,4 +1,4 @@
-# dstc11-simmc2.1-damo-convai
+# DSTC11-SIMMC.1-DAMO-ConvAI
 
 <p align="center">
   	<a href="https://github.com/huggingface/transformers/tree/main/examples/research_projects/tapex">
