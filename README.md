@@ -142,7 +142,7 @@ Since our model is trained separately for each task, Download the model paramete
 | Performance (devtest) | 45.39 |
 | Checkpoint | [Checkpoint Link](https://drive.google.com/file/d/1kt1tsSihK_I_fhfRAgp6ECZ-WzAmMS-c/view?usp=share_link) |
 
-## **Result**
+## 📜 **Result**
 
 For the results of each task, we put the prediction results of the test-std set in the [test_result](https://github.com/lyxzhb/dstc11-simmc2.1-damo-convai/tree/main/teststd_result) folder. 
 
