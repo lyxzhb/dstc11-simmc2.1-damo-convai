@@ -1,6 +1,8 @@
 # DSTC11-SIMMC2.1-DAMO-ConvAI
 
 <p align="center">
+    <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT%202-red.svg">
+    </a>
   	<a href="https://github.com/huggingface/transformers/tree/main/examples/research_projects/tapex">
       <img alt="🤗 transformers support" src="https://img.shields.io/badge/🤗 transformers-master-green" />
     </a>
@@ -13,7 +15,7 @@
 
 DSTC11-Track 1 : **The Third Situated Interactive MultiModal Conversations (SIMMC 2.1) Challenge 2022**
 
-Team: **damo-convai**
+Team: **DAMO-ConvAI**
 
 Participant: **Yuxing Long, Huibin Zhang, Huibin Yuan**
 
