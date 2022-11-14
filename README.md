@@ -32,7 +32,7 @@ For task 4, we propose a generative multimodal model which takes dialogue histor
 - 2022.11.5: We are officialy announced as the 🏆 *Winner* of DSTC11 Track1 Subtask2,3,4 and 🥈 *Runner-up* of DSTC11 Track1 Subtask1.
 
 ## 🌏 **Environment**
-Firstly, download [fairseq files](https://drive.google.com/file/d/1N17WI_9VBSU_06ALob5XIwI28epFuzuL/view?usp=share_link) and put it user task4 directory.
+Firstly, download [fairseq files](https://drive.google.com/file/d/1N17WI_9VBSU_06ALob5XIwI28epFuzuL/view?usp=share_link) and put it under task4 directory.
 Then, install the conda virtual environment by:
 ```shell
 conda env create -f simmc.yml
