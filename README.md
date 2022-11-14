@@ -147,7 +147,7 @@ Since our model is trained separately for each task, Download the model paramete
 
 ## 📜 **Result**
 
-For the results of each task, we put the prediction results of the test-std set in the [test_result](https://drive.google.com/file/d/1X5_QpBiGHkHiKroLtwtxTc15dQ6975dQ/view?usp=share_link) folder. 
+For the results of each task, we put the prediction results of the test-std set in the [test_result](https://drive.google.com/file/d/1X5_QpBiGHkHiKroLtwtxTc15dQ6975dQ/view?usp=share_link) link. 
 
 ## 💬 **References**
 
