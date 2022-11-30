@@ -99,7 +99,8 @@ class LineByLineTask2Dataset(Dataset):
         self.disambiguation_labels = []
         self.misc = [] 
         self.is_fashion = []
-
+        self.target_bbox_data = []
+        
         corefs = []
         
         vocab2id = tokenizer.get_vocab()
@@ -112,6 +113,7 @@ class LineByLineTask2Dataset(Dataset):
             self.disambiguation_labels.append(dialog['disambiguation_label'])
             self.is_fashion.append(dialog['is_fashion'])
             self.boxes.append(dialog['bbox'])
+            self.target_bbox_data.append(dialog['tgt_bbox_data'])
             lines.append(dialog['input'])
 
             corefs.append([f'<{index}>' for index in dialog['reference_objects']])  # 解决任务2
@@ -129,7 +131,7 @@ class LineByLineTask2Dataset(Dataset):
         for idx, tokenized_line in enumerate(self.examples):
             
             tl = tokenized_line
-
+            target_bbox_item = self.target_bbox_data[idx]
             EOM_indices = [i for i, tokenized_id in enumerate(tl) if tokenized_id == EOM_id]
             if EOM_indices:  # 判断其是否为空
                 EOM_last_idx = EOM_indices[-1]
@@ -138,7 +140,8 @@ class LineByLineTask2Dataset(Dataset):
             
             self.nocoref.append((tl.index(nocoref_id), 1 if not corefs[idx] else 0))  # 判断是否存在Object指代
             line_labels = []
-
+            token_index = 0
+            
             if self.is_fashion[idx]:
                 for i, token_id in enumerate(tl):
                     if token_id in id2index and i > EOM_last_idx:  # this token is for item index 因为scene token都是在Multimodal Token id的后面
@@ -146,7 +149,8 @@ class LineByLineTask2Dataset(Dataset):
                         pos = i
                         item_index = id2index[token_id]
 
-                        fashion_st = id2fashion_st[tl[i+1]]
+                        fashion_st = target_bbox_item[token_index]
+                        token_index += 1
                         temp['is_fashion'] = True
                         temp['pos'] = pos
                         temp['coref_label'] = 1 if item_index in corefs[idx] else 0
@@ -165,7 +169,8 @@ class LineByLineTask2Dataset(Dataset):
                         temp = dict()
                         pos = i
                         item_index = id2index[token_id]
-                        furniture_st = id2furniture_st[tl[i+1]]
+                        furniture_st = target_bbox_item[token_index]
+                        token_index += 1
                         
                         temp['is_fashion'] = False
                         temp['pos'] = pos  # 代表是第几个Object Info

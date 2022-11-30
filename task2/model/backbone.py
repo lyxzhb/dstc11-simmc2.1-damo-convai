@@ -79,9 +79,9 @@ class VLBertModel(nn.Module):
                 pos = misc[b_idx][obj_idx]['pos']
                 # hidden_concat: (num_obj, 2*model)
                 if obj_idx == 0:
-                    hidden_concat = torch.reshape(enc_last_state[b_idx][pos:pos+2], (1, -1))
+                    hidden_concat = torch.reshape(enc_last_state[b_idx][pos:pos+1], (1, -1))
                 else:
-                    hidden_concat = torch.cat([hidden_concat, torch.reshape(enc_last_state[b_idx][pos:pos+2], (1, -1))], dim=0)
+                    hidden_concat = torch.cat([hidden_concat, torch.reshape(enc_last_state[b_idx][pos:pos+1], (1, -1))], dim=0)
 
             is_fashion = misc[b_idx][0]['is_fashion']
             coref_label = torch.tensor([misc[b_idx][obj_idx]['coref_label'] for obj_idx in range(len(misc[b_idx]))]).to(inputs_embeds.device)  # (num_obj)  0 or 1
@@ -129,9 +129,9 @@ class VLBertModel(nn.Module):
             for obj_idx in range(len(misc[b_idx])):
                 pos = misc[b_idx][obj_idx]['pos']
                 if obj_idx == 0:
-                    hidden_concat = torch.reshape(enc_last_state[b_idx][pos:pos+2], (1, -1)) # hidden_concat: (num_obj, 2*model)
+                    hidden_concat = torch.reshape(enc_last_state[b_idx][pos:pos+1], (1, -1)) # hidden_concat: (num_obj, 2*model)
                 else:
-                    hidden_concat = torch.cat([hidden_concat, torch.reshape(enc_last_state[b_idx][pos:pos+2], (1, -1))], dim=0)
+                    hidden_concat = torch.cat([hidden_concat, torch.reshape(enc_last_state[b_idx][pos:pos+1], (1, -1))], dim=0)
 
             is_fashion = misc[b_idx][0]['is_fashion']
             coref_label = torch.tensor([misc[b_idx][obj_idx]['coref_label'] for obj_idx in range(len(misc[b_idx]))]).to(inputs_embeds.device)  # (num_obj)  0 or 1

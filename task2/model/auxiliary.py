@@ -41,7 +41,7 @@ class FashionEncoderHead(nn.Module):
     def __init__(self, hidden_dim):
         ''' 用于将特征的输出进行分类： 时尚类信息 多标签2分类'''
         super(FashionEncoderHead, self).__init__()
-        self.aggregator = nn.Linear(2*hidden_dim, 2*hidden_dim)
+        self.aggregator = nn.Linear(hidden_dim, 2*hidden_dim)
         # self.aggregator_layer_norm = nn.LayerNorm(2*hidden_dim)
 
         self.coref_linear = nn.Linear(2*hidden_dim, 2)  # 针对当前的Object是否被提及的Loss
@@ -81,7 +81,7 @@ class FurnitureEncoderHead(nn.Module):
 
     def __init__(self, hidden_dim):
         super(FurnitureEncoderHead, self).__init__()
-        self.aggregator = nn.Linear(2*hidden_dim, 2*hidden_dim)
+        self.aggregator = nn.Linear(hidden_dim, 2*hidden_dim)
         # self.aggregator_layer_norm = nn.LayerNorm(2*hidden_dim)
 
         self.coref_linear = nn.Linear(2*hidden_dim, 2)
