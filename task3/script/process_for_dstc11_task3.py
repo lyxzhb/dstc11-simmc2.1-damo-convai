@@ -34,6 +34,7 @@ def arrange_object_special_tokens(scene_dir, image_dir, scene_ids, object_item2i
     
     arrange_list = []
     arrange_bbox_list = []
+    tgt_obj_list = []
     scene_loaded_list = []
     obj_dict_possibly_duplicated = dict()
 
@@ -73,7 +74,7 @@ def arrange_object_special_tokens(scene_dir, image_dir, scene_ids, object_item2i
         # 把当前场景下的所有的Object都放进来了
         for obj in scene['scenes'][0]['objects']:
             assert obj['index'] in obj_dict_possibly_duplicated, "SOMETHING IS MISSING!"
-            
+            tgt_obj_list.append(object_item2id[obj['prefab_path']])
             if scene_id_idx == obj_dict_possibly_duplicated[obj['index']]:
 
                 if insert_bbox_coords:
@@ -102,11 +103,11 @@ def arrange_object_special_tokens(scene_dir, image_dir, scene_ids, object_item2i
 
                 
                 if (num_scene != 1) and (scene_id_idx == 0): 
-                    arrange_list.append(OBJ_PREVI + "<" + str(obj['index']) + ">" + object_item2id[obj['prefab_path']])
+                    arrange_list.append(OBJ_PREVI + "<" + str(obj['index']) + ">")
                 else: 
-                    arrange_list.append(OBJ_START + "<" + str(obj['index']) + ">" + object_item2id[obj['prefab_path']])
+                    arrange_list.append(OBJ_START + "<" + str(obj['index']) + ">")
 
-    return ''.join(arrange_list), arrange_bbox_list
+    return ''.join(arrange_list), arrange_bbox_list, tgt_obj_list
 
 
 
@@ -185,7 +186,7 @@ def process_for_vlbert_task3():
                 
                 turn_scene_ids = [item[1] for item in scene_ids if int(item[0]) <= turn_idx]
 
-                object_str, bbox_data = arrange_object_special_tokens(scene_dir, image_dir, turn_scene_ids, object_item2id, True)
+                object_str, bbox_data, tgt_bbox_data = arrange_object_special_tokens(scene_dir, image_dir, turn_scene_ids, object_item2id, True)
 
                 if prev_turn is None:
                     lst_context.append(f'User : {transcript}')
@@ -211,6 +212,7 @@ def process_for_vlbert_task3():
                     'disambiguation_objects': disambiguation_candidates,
                     'dialogue_idx': dialogue_idx,
                     'turn_idx': turn_idx,
+                    'tgt_bbox_data': tgt_bbox_data,
                     'role': 'User'
                 })
 
